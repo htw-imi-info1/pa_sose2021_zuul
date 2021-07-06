@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=WorldTest
+comment0.text=\n\ \n\ @author\ \ Barne\ Kleinen\n
+comment1.params=
+comment1.target=WorldTest()
+comment2.params=
+comment2.target=void\ setUp()
+comment2.text=\n\ Sets\ up\ the\ test\ fixture.\n\n\ Called\ before\ every\ test\ case\ method.\n
+comment3.params=
+comment3.target=void\ goWODirectionShouldShowError()
+comment3.text=\n\ This\ test\ should\ keep\ working\n
+comment4.params=
+comment4.target=void\ completeWalkthrough()
+comment4.text=\n\ Adapt\ this\ to\ your\ new\ world\n
+comment5.params=direction\ whatShouldBeContained
+comment5.target=void\ goAndSee(java.lang.String,\ java.lang.String)
+comment5.text=\n\ helper\ method\ for\ completeWalkthrough\ -\ no\ changes\ needed\n
+numComments=6

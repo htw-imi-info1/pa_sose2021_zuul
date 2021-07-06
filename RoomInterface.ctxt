@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=RoomInterface
+comment0.text=\n\ You\ can\ use\ this\ interface\ to\ make\ sure\ you've\ implemented\ the\ right\ methods.\n\n\ just\ add\ "implements\ RoomInterface"\ to\ Room.\n
+comment1.params=direction\ room
+comment1.target=void\ addExit(java.lang.String,\ Room)
+numComments=2

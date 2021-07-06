@@ -6,6 +6,6 @@
 public interface ExitInterface
 {
     public void add(String direction, Room room);
-    public void get(String direction);
+    public Room get(String direction);
     public String getDescription();
 }

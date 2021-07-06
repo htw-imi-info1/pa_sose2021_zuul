@@ -12,13 +12,10 @@
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
  */
-public class Room 
+public class Room implements RoomInterface
 {
     private String description;
-    public Room northExit;
-    public Room southExit;
-    public Room eastExit;
-    public Room westExit;
+    private Exits exits = new Exits();
 
     /**
      * Create a room described "description". Initially, it has
@@ -30,37 +27,15 @@ public class Room
     {
         this.description = description;
     }
-
-    /**
-     * Define the exits of this room.  Every direction either leads
-     * to another room or is null (no exit there).
-     * @param north The north exit.
-     * @param east The east east.
-     * @param south The south exit.
-     * @param west The west exit.
-     */
-    public void setExits(Room north, Room east, Room south, Room west) 
-    {
-        if(north != null) {
-            northExit = north;
-        }
-        if(east != null) {
-            eastExit = east;
-        }
-        if(south != null) {
-            southExit = south;
-        }
-        if(west != null) {
-            westExit = west;
-        }
-    }
-
+    public void addExit(String d, Room r){exits.add(d,r);}
+    public Room getExit(String d){return exits.get(d);}
+    
     /**
      * @return The description of the room.
      */
     public String getDescription()
     {
-        return description;
+        return description + "\n" + exits.getDescription();
     }
 
 }

@@ -18,7 +18,7 @@
 public class Game 
 {
     private Parser parser;
-    private Room currentRoom;
+    private GameStatus status;
     // private GameStatus gameStatus;
 
     /**
@@ -43,15 +43,19 @@ public class Game
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
-
+        // public void setExits(Room north, Room east, Room south, Room west) 
         // initialise room exits
-        outside.setExits(null, theater, lab, pub);
-        theater.setExits(null, null, null, outside);
-        pub.setExits(null, outside, null, null);
-        lab.setExits(outside, office, null, null);
-        office.setExits(null, null, null, lab);
+        outside.addExit("east",theater);
+        outside.addExit("south",lab);
+        outside.addExit("west",pub);
+        
+        theater.addExit("west", outside);
+        pub.addExit("east", outside);
+        lab.addExit("north",outside);
+        lab.addExit("east",office);
+        office.addExit("west", lab);
 
-        currentRoom = outside;  // start game outside
+        status = new GameStatus(outside);  // start game outside
     }
 
     /**
@@ -99,20 +103,7 @@ public class Game
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type 'help' if you need help.");
         System.out.println();
-        System.out.println("You are " + currentRoom.getDescription());
-        System.out.print("Exits: ");
-        if(currentRoom.northExit != null) {
-            System.out.print("north ");
-        }
-        if(currentRoom.eastExit != null) {
-            System.out.print("east ");
-        }
-        if(currentRoom.southExit != null) {
-            System.out.print("south ");
-        }
-        if(currentRoom.westExit != null) {
-            System.out.print("west ");
-        }
+        System.out.println(status.getLocationDescription());
         System.out.println();
     }
 
@@ -169,49 +160,7 @@ public class Game
      */
     private String goRoom(Command command) 
     {
-        if(!command.hasSecondWord()) {
-            // if there is no second word, we don't know where to go...
-            return "Go where?";
-        }
-
-        String direction = command.getSecondWord();
-
-        // Try to leave current room.
-        Room nextRoom = null;
-        if(direction.equals("north")) {
-            nextRoom = currentRoom.northExit;
-        }
-        if(direction.equals("east")) {
-            nextRoom = currentRoom.eastExit;
-        }
-        if(direction.equals("south")) {
-            nextRoom = currentRoom.southExit;
-        }
-        if(direction.equals("west")) {
-            nextRoom = currentRoom.westExit;
-        }
-        String result = "";
-        if (nextRoom == null) {
-            result += "There is no door!";
-        }
-        else {
-            currentRoom = nextRoom;
-            result += "You are " + currentRoom.getDescription()+"\n";
-            result += "Exits: ";
-            if(currentRoom.northExit != null) {
-                result += "north ";
-            }
-            if(currentRoom.eastExit != null) {
-                result += "east ";
-            }
-            if(currentRoom.southExit != null) {
-                result += "south ";
-            }
-            if(currentRoom.westExit != null) {
-                result += "west ";
-            }         
-        }
-        return result + "\n";
+        return status.handleGoCommand(command);
     }
 
     /** 

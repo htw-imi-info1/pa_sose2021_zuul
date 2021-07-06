@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=CommandTest
+comment1.params=
+comment1.target=CommandTest()
+comment1.text=\n\ Default\ constructor\ for\ test\ class\ CommandTest\n
+comment2.params=
+comment2.target=void\ testReadCommand()
+comment3.params=
+comment3.target=void\ testLook()
+numComments=4

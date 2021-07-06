@@ -125,7 +125,13 @@ public class Game
             result = printHelp();
         }
         else if (commandWord.equals("go")) {
-            result = goRoom(command);
+            result = status.handleGoCommand(command);
+        }
+        else if (commandWord.equals("look") || commandWord.equals("x")) {
+            result = status.getLocationDescription();
+        }
+        else if (commandWord.equals("read")) {
+            result = "You are reading a book\n";
         }
         else if (commandWord.equals("quit")) {
             result = quit(command);
@@ -152,15 +158,6 @@ public class Game
         +"\n"
         +"   go quit help"
         +"\n";
-    }
-
-    /** 
-     * Try to go in one direction. If there is an exit, enter
-     * the new room, otherwise print an error message.
-     */
-    private String goRoom(Command command) 
-    {
-        return status.handleGoCommand(command);
     }
 
     /** 

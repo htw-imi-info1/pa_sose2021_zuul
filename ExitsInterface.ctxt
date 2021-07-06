@@ -1,5 +1,5 @@
 #BlueJ class context
-comment0.target=ExitInterface
+comment0.target=ExitsInterface
 comment0.text=\n\ use\ this\ to\ ensure\ you've\ implemented\ the\ right\ methods.\n\n
 comment1.params=direction\ room
 comment1.target=void\ add(java.lang.String,\ Room)

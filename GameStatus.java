@@ -1,11 +1,9 @@
 
 /**
- * Write a description of class GameStatus here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * uncomment the implements part if you want the compiler to help
+ * with the correct method signatures.
  */
-public class GameStatus implements GameStatusInterface
+public class GameStatus // implements GameStatusInterface
 {
     private Room currentRoom;
 }

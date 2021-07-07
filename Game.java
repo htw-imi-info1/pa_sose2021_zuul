@@ -99,21 +99,8 @@ public class Game
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type 'help' if you need help.");
         System.out.println();
-        System.out.println("You are " + currentRoom.getDescription());
-        System.out.print("Exits: ");
-        if(currentRoom.northExit != null) {
-            System.out.print("north ");
-        }
-        if(currentRoom.eastExit != null) {
-            System.out.print("east ");
-        }
-        if(currentRoom.southExit != null) {
-            System.out.print("south ");
-        }
-        if(currentRoom.westExit != null) {
-            System.out.print("west ");
-        }
-        System.out.println();
+        System.out.println(currentRoom.getDescription());
+       
     }
 
     /**
@@ -177,39 +164,15 @@ public class Game
         String direction = command.getSecondWord();
 
         // Try to leave current room.
-        Room nextRoom = null;
-        if(direction.equals("north")) {
-            nextRoom = currentRoom.northExit;
-        }
-        if(direction.equals("east")) {
-            nextRoom = currentRoom.eastExit;
-        }
-        if(direction.equals("south")) {
-            nextRoom = currentRoom.southExit;
-        }
-        if(direction.equals("west")) {
-            nextRoom = currentRoom.westExit;
-        }
+        Room nextRoom = currentRoom.getExit(direction);
+      
         String result = "";
         if (nextRoom == null) {
             result += "There is no door!";
         }
         else {
             currentRoom = nextRoom;
-            result += "You are " + currentRoom.getDescription()+"\n";
-            result += "Exits: ";
-            if(currentRoom.northExit != null) {
-                result += "north ";
-            }
-            if(currentRoom.eastExit != null) {
-                result += "east ";
-            }
-            if(currentRoom.southExit != null) {
-                result += "south ";
-            }
-            if(currentRoom.westExit != null) {
-                result += "west ";
-            }         
+            result += currentRoom.getDescription();
         }
         return result + "\n";
     }

@@ -18,8 +18,7 @@
 public class Game 
 {
     private Parser parser;
-    private Room currentRoom;
-    // private GameStatus gameStatus;
+    private GameStatus gameStatus;
 
     /**
      * Create the game and initialise its internal map.
@@ -43,6 +42,7 @@ public class Game
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
+        Room cellar = new Room("in a dark damp cellar");
 
         // initialise room exits
         outside.setExits(null, theater, lab, pub);
@@ -50,8 +50,10 @@ public class Game
         pub.setExits(null, outside, null, null);
         lab.setExits(outside, office, null, null);
         office.setExits(null, null, null, lab);
-
-        currentRoom = outside;  // start game outside
+        pub.setExit("down", cellar);
+        cellar.setExit("up", pub);
+        
+        gameStatus = new GameStatus(outside);
     }
 
     /**
@@ -99,7 +101,7 @@ public class Game
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type 'help' if you need help.");
         System.out.println();
-        System.out.println(currentRoom.getDescription());
+        System.out.println(gameStatus.getLocationDescription());
        
     }
 
@@ -126,7 +128,12 @@ public class Game
         else if (commandWord.equals("quit")) {
             result = quit(command);
         }
-
+        else if (commandWord.equals("look")) {
+            result = gameStatus.getLocationDescription();
+        }
+        else if (commandWord.equals("read")) {
+            result = "You are reading The House in the Cerulean Sea.";
+        }
         return result ;
     }
 
@@ -146,7 +153,7 @@ public class Game
         +"\n"
         +"Your command words are:"
         +"\n"
-        +"   go quit help"
+        +"   go quit look read help"
         +"\n";
     }
 
@@ -156,25 +163,7 @@ public class Game
      */
     private String goRoom(Command command) 
     {
-        if(!command.hasSecondWord()) {
-            // if there is no second word, we don't know where to go...
-            return "Go where?";
-        }
-
-        String direction = command.getSecondWord();
-
-        // Try to leave current room.
-        Room nextRoom = currentRoom.getExit(direction);
-      
-        String result = "";
-        if (nextRoom == null) {
-            result += "There is no door!";
-        }
-        else {
-            currentRoom = nextRoom;
-            result += currentRoom.getDescription();
-        }
-        return result + "\n";
+        return gameStatus.handleGoCommand(command);
     }
 
     /** 

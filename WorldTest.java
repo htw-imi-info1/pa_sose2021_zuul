@@ -52,6 +52,13 @@ public class WorldTest
         goAndSee("west",  "computing lab");
         goAndSee("north", "main entrance");
     }
+    @Test
+    public void testCellar()
+    {
+        goAndSee("west",  "campus pub");
+        goAndSee("down",  "cellar");
+        goAndSee("up", "pub");
+    }
     /**
      * helper method for completeWalkthrough - no changes needed
      */

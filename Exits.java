@@ -1,5 +1,5 @@
 import java.util.*;
-public class Exits implements ExitsInterface
+public class Exits 
 {
     Map<String,Room> exits = new HashMap<>();
     public void add(String direction, Room room){exits.put(direction,room);}

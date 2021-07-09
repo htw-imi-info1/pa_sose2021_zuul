@@ -40,7 +40,9 @@ public class Game
         outside = new Room("outside the main entrance of the university");
         theater = new Room("in a lecture theater");
         pub = new Room("in the campus pub");
+        pub.addItem(new Item("warm milk",300));
         lab = new Room("in a computing lab");
+        lab.addItem(new Item("univac manual",1000));
         office = new Room("in the computing admin office");
         Room cellar = new Room("in a dark damp cellar");
 

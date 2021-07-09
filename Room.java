@@ -12,12 +12,13 @@
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
  */
+import java.util.*;
 public class Room 
 {
-    
+
     private String description;
     private Exits exits = new Exits();
-
+    private Collection<Item> items = new ArrayList<>();
 
     /**
      * Create a room described "description". Initially, it has
@@ -39,12 +40,12 @@ public class Room
      * @param west The west exit.
      */
     public void setExit(String direction, Room room){exits.add(direction,room);};
-    
+
     @Deprecated
     public void setExits(Room north, Room east, Room south, Room west) 
     {
         if(north != null) {
-           setExit("north",north);
+            setExit("north",north);
         }
         if(east != null) {
             setExit("east",east);
@@ -63,10 +64,25 @@ public class Room
     public String getDescription()
     {
         return "You are " + description 
+        +"\n" + getItemsDescription()
         +"\n" + exits.getDescription();
-         
+
     }
-    
+
+    public String getItemsDescription(){
+        String result = "";
+        if (items.size() > 0){
+            result += "There are items in the room:";
+            for(Item i : items){
+                result +="\n - "+ i.getDescription();
+            }
+            result += "\n";
+        }
+        return result;
+    }
+
+    public void addItem(Item i){items.add(i);}
+
     public Room getExit(String direction){return exits.get(direction);}
 
 }

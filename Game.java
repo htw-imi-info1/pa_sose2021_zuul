@@ -72,6 +72,7 @@ public class Game
         while (! finished) {
             Command command = parser.getCommand();
             String output = processCommand(command);
+            //String output = command.process(gameStatus);
             finished = (null == output);
             if (!finished)
             {

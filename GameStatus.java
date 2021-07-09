@@ -6,10 +6,17 @@
 public class GameStatus // implements GameStatusInterface
 { 
     private Room currentRoom;
+    private Room lastRoom;
+    
     public GameStatus(Room initialRoom){
         currentRoom = initialRoom;
     }
     
+    public String handleBackCommand(Command command){
+        if (lastRoom == null) return "I don't remember where you came from!";
+        currentRoom = lastRoom; lastRoom = null;
+        return currentRoom.getDescription();
+    }
     public String handleGoCommand(Command command){
     
         if(!command.hasSecondWord()) {
@@ -27,6 +34,7 @@ public class GameStatus // implements GameStatusInterface
             result += "There is no door!";
         }
         else {
+            lastRoom = currentRoom;
             currentRoom = nextRoom;
             result += currentRoom.getDescription();
         }

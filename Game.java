@@ -54,7 +54,7 @@ public class Game
         office.setExits(null, null, null, lab);
         pub.setExit("down", cellar);
         cellar.setExit("up", pub);
-        
+
         gameStatus = new GameStatus(outside);
     }
 
@@ -105,7 +105,7 @@ public class Game
         System.out.println("Type 'help' if you need help.");
         System.out.println();
         System.out.println(gameStatus.getLocationDescription());
-       
+
     }
 
     /**
@@ -127,6 +127,9 @@ public class Game
         }
         else if (commandWord.equals("go")) {
             result = goRoom(command);
+        }
+        else if (commandWord.equals("back")) {
+            result = gameStatus.handleBackCommand(command);
         }
         else if (commandWord.equals("quit")) {
             result = quit(command);

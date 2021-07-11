@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Quit
+comment1.params=parameters
+comment1.target=Quit(java.lang.String)
+comment2.params=gameStatus
+comment2.target=java.lang.String\ process(GameStatus)
+comment2.text=\ \n\ "Quit"\ was\ entered.\ Check\ the\ rest\ of\ the\ command\ to\ see\n\ whether\ we\ really\ quit\ the\ game.\n\ @return\ null,\ if\ this\ command\ quits\ the\ game,\ anything\ else\ otherwise.\n
+numComments=3

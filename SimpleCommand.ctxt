@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=SimpleCommand
+comment0.text=\n\ A\ SimpleCommand\ just\ returns\ its\ output,\n\ The\ gameStatus\ is\ never\ changed.\n
+comment1.params=parameters\ output
+comment1.target=SimpleCommand(java.lang.String,\ java.lang.String)
+comment2.params=_gameStatus
+comment2.target=java.lang.String\ process(GameStatus)
+numComments=3

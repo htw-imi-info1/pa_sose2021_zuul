@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Go
+comment1.params=parameter
+comment1.target=Go(java.lang.String)
+comment2.params=gameStatus
+comment2.target=java.lang.String\ process(GameStatus)
+numComments=3

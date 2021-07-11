@@ -1,30 +1,30 @@
 /**
- *  This class is the main class of the "World of Zuul" application. 
- *  "World of Zuul" is a very simple, text based adventure game.  Users 
- *  can walk around some scenery. That's all. It should really be extended 
+ *  This class is the main class of the "World of Zuul" application.
+ *  "World of Zuul" is a very simple, text based adventure game.  Users
+ *  can walk around some scenery. That's all. It should really be extended
  *  to make it more interesting!
- * 
+ *
  *  To play this game, create an instance of this class and call the "play"
  *  method.
- * 
+ *
  *  This main class creates and initialises all the others: it creates all
  *  rooms, creates the parser and starts the game.  It also evaluates and
  *  executes the commands that the parser returns.
- * 
+ *
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
  */
 
-public class Game 
+public class Game
 {
     private Parser parser;
-    private GameStatus status;
+    private GameStatus gameStatus;
     // private GameStatus gameStatus;
 
     /**
      * Create the game and initialise its internal map.
      */
-    public Game() 
+    public Game()
     {
         createRooms();
         parser = new Parser();
@@ -43,42 +43,37 @@ public class Game
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
-        // public void setExits(Room north, Room east, Room south, Room west) 
+        // public void setExits(Room north, Room east, Room south, Room west)
         // initialise room exits
         outside.addExit("east",theater);
         outside.addExit("south",lab);
         outside.addExit("west",pub);
-        
+
         theater.addExit("west", outside);
         pub.addExit("east", outside);
         lab.addExit("north",outside);
         lab.addExit("east",office);
         office.addExit("west", lab);
 
-        status = new GameStatus(outside);  // start game outside
+        gameStatus = new GameStatus(outside);  // start game outside
     }
 
     /**
      *  Main play routine.  Loops until end of play.
      */
-    public void play() 
-    {            
+    public void play()
+    {
         printWelcome();
 
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
 
-        boolean finished = false;
-        while (! finished) {
+        while (gameStatus.isPlaying()) {
             Command command = parser.getCommand();
-            String output = processCommand(command);
-            finished = (null == output);
-            if (!finished)
-            {
-                System.out.println(output);
-            }
+            String output = command.process(gameStatus);
+            System.out.println(output);
         }
-        System.out.println("Thank you for playing.  Good bye.");
+
     }
 
     /**
@@ -90,7 +85,7 @@ public class Game
      */
     public String processCommand(String commandLine){
         Command command = parser.getCommand(commandLine);
-        return processCommand(command);
+        return command.process(gameStatus);
     }
 
     /**
@@ -103,75 +98,11 @@ public class Game
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type 'help' if you need help.");
         System.out.println();
-        System.out.println(status.getLocationDescription());
+        System.out.println(gameStatus.getLocationDescription());
         System.out.println();
     }
 
-    /**
-     * Given a command, process (that is: execute) the command.
-     * @param command The command to be processed.
-     * @return true If the command ends the game, false otherwise.
-     */
-    private String processCommand(Command command) 
-    {
-        boolean wantToQuit = false;
 
-        if(command.isUnknown()) {
-            return "I don't know what you mean...";       
-        }
-        String result = null;
-        String commandWord = command.getCommandWord();
-        if (commandWord.equals("help")) {
-            result = printHelp();
-        }
-        else if (commandWord.equals("go")) {
-            result = status.handleGoCommand(command);
-        }
-        else if (commandWord.equals("look") || commandWord.equals("x")) {
-            result = status.getLocationDescription();
-        }
-        else if (commandWord.equals("read")) {
-            result = "You are reading a book\n";
-        }
-        else if (commandWord.equals("quit")) {
-            result = quit(command);
-        }
 
-        return result ;
-    }
 
-    // implementations of user commands:
-
-    /**
-     * Print out some help information.
-     * Here we print some stupid, cryptic message and a list of the 
-     * command words.
-     */
-    private String printHelp() 
-    {
-        return "You are lost. You are alone. You wander"
-        +"\n"
-        + "around at the university."
-        +"\n"
-        +"\n"
-        +"Your command words are:"
-        +"\n"
-        +"   go quit help"
-        +"\n";
-    }
-
-    /** 
-     * "Quit" was entered. Check the rest of the command to see
-     * whether we really quit the game.
-     * @return true, if this command quits the game, false otherwise.
-     */
-    private String quit(Command command) 
-    {
-        if(command.hasSecondWord()) {
-            return "Quit what?";
-        }
-        else {
-            return null;  // signal that we want to quit
-        }
-    }
 }

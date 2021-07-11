@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Help
+comment1.params=parameters
+comment1.target=Help(java.lang.String)
+comment2.params=gameStatus
+comment2.target=java.lang.String\ process(GameStatus)
+comment2.text=\n\ Print\ out\ some\ help\ information.\n\ Here\ we\ print\ some\ stupid,\ cryptic\ message\ and\ a\ list\ of\ the\ \n\ command\ words.\n
+numComments=3

@@ -1,10 +1,8 @@
 
-
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 
 public class CommandTest
 {
@@ -16,6 +14,7 @@ public class CommandTest
     {
         game = new Game();    
     }
+
     @Test
     public void testReadCommand(){
         String result = game.processCommand("read");
@@ -29,7 +28,6 @@ public class CommandTest
         assertTrue( actual.contains("You are outside the main entrance"));
         assertTrue( actual.contains("west"));
     }
- 
 
     @Test
     public void testHelp()
@@ -37,8 +35,19 @@ public class CommandTest
         String actual = game.processCommand("help");
         assertTrue( actual.contains("Your command words are:"));
         assertTrue( actual.contains("go quit help"));
-   
+
+    }
+
+    @Test
+    public void testUnknown(){
+        assertEquals("I don't know what you mean...\n",game.processCommand("murks"));
+    }
+
+    @Test
+    public void testQuit(){
+
+        assertEquals("Quit what?",game.processCommand("quit not really"));
+        assertEquals("Thank you for playing.  Good bye.\n",game.processCommand("quit"));
     }
 }
-
 

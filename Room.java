@@ -12,7 +12,7 @@
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
  */
-public class Room implements RoomInterface
+public class Room
 {
     private String description;
     private Exits exits = new Exits();

@@ -25,9 +25,20 @@ public class CommandTest
     @Test
     public void testLook()
     {
-        java.lang.String expected = game.processCommand("look");
-        assertTrue( expected.contains("You are outside the main entrance"));
-         assertTrue( expected.contains("west"));
+        String actual = game.processCommand("look");
+        assertTrue( actual.contains("You are outside the main entrance"));
+        assertTrue( actual.contains("west"));
+    }
+ 
+
+    @Test
+    public void testHelp()
+    {
+        String actual = game.processCommand("help");
+        assertTrue( actual.contains("Your command words are:"));
+        assertTrue( actual.contains("go quit help"));
+   
     }
 }
+
 

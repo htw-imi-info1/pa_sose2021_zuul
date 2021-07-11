@@ -1,7 +1,7 @@
 
 import java.util.*;
 import java.util.stream.Collectors;
-public class Exits implements ExitsInterface
+public class Exits
 {
     private Map<String,Room> exits = new HashMap<>();
     public String getDescription(){

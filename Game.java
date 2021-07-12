@@ -51,15 +51,15 @@ public class Game
         office = new Room("in the computing admin office");
         // public void setExits(Room north, Room east, Room south, Room west)
         // initialise room exits
-        outside.addExit("east",theater);
-        outside.addExit("south",lab);
-        outside.addExit("west",pub);
+        outside.setExit("east",theater);
+        outside.setExit("south",lab);
+        outside.setExit("west",pub);
 
-        theater.addExit("west", outside);
-        pub.addExit("east", outside);
-        lab.addExit("north",outside);
-        lab.addExit("east",office);
-        office.addExit("west", lab);
+        theater.setExit("west", outside);
+        pub.setExit("east", outside);
+        lab.setExit("north",outside);
+        lab.setExit("east",office);
+        office.setExit("west", lab);
 
         gameStatus = new GameStatus(outside);  // start game outside
         // END_WORLD

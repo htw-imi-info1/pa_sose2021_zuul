@@ -27,7 +27,7 @@ public class Room
     {
         this.description = description;
     }
-    public void addExit(String d, Room r){exits.add(d,r);}
+    public void setExit(String d, Room r){exits.add(d,r);}
     public Room getExit(String d){return exits.get(d);}
     
     /**

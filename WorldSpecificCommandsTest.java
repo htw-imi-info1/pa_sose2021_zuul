@@ -35,6 +35,7 @@ public class WorldSpecificCommandsTest
         assertTrue(result.contains("east"));
         assertTrue(result.contains("south"));
         assertTrue(result.contains("west"));
+        assertFalse(result.contains("north"));
     }
 
 }

@@ -23,8 +23,8 @@ public class WorldSpecificCommandsTest
     public void testLook()
     {
         String actual = game.processCommand("look");
-        assertTrue( actual.contains("You are outside the main entrance"));
-        assertTrue( actual.contains("west"));
+        assertTrue( actual.contains("Staubwüste"));
+        assertTrue( actual.contains("east"));
     }
 
     @Test
@@ -34,7 +34,7 @@ public class WorldSpecificCommandsTest
         assertTrue(result.contains("Exits:"));
         assertTrue(result.contains("east"));
         assertTrue(result.contains("south"));
-        assertTrue(result.contains("west"));
+        assertFalse(result.contains("west"));
         assertFalse(result.contains("north"));
     }
 

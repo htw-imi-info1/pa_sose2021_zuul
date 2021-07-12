@@ -32,37 +32,92 @@ public class Game
 
     /**
      * Create all the rooms and link their exits together.
+     * 
+    World:
+    - Staubwüste
+    - Krater
+    - Berg
+    - Mauseloch
+
+     * -> s - s - s    - s
+     *    |   |   |      |
+     *    s - K - B    - s
+     *    |   |   |      |
+     *    s - s - s(M) - B
+     *    |   |   |      |
+     *    s - B - s(R) - s
+
+    Goal: Käse finden und zur Rakete bringen bevor ihn die Mondmäuse finden
+
+    up/down: Rakete  (über Staubwüste s*, nicht über Krater oder Berg), Mauseloch
+
+    Items:
+    - Schweizer Käse
+    - Gouda
+    - Edammer
+    - Gogonzola
+    - Mausefalle
+
      */
     private void createRooms()
     {
         // START_WORLD
         welcomeString =   
-        "Welcome to the World of Zuul!\n"+
-        "World of Zuul is a new, incredibly boring adventure game.\n"+
+        "Welcome to 'Maus im Mond'!\n"+
+        "Maus im Mond is a new, incredibly boring adventure game.\n"+
         "Type 'help' if you need help.\n"; 
+        String[] row1 = {"in einer Staubwüste 1","in einer Staubwüste 2","in einer Staubwüste 3","in einer Staubwüste 4"};
+        String[] row2 = {"in einer Staubwüste 5","in einem Krater","auf einem Berg","in einer Staubwüste 6"};
+        String[] row3 = {"in einer Staubwüste 7","in einer Staubwüste 8","in einer Staubwüste 9","auf einem Berg"};
+        String[] row4 = {"in einer Staubwüste 10","Berg","in einer Staubwüste 11","in einer Staubwüste 12"};
+        Room firstRoom = buildRow(null, row1 );
+        Room initialRoom = firstRoom;
 
-        Room outside, theater, pub, lab, office;
+        firstRoom = buildRow(firstRoom, row2);
+        firstRoom = buildRow(firstRoom, row3);
+        firstRoom = buildRow(firstRoom, row4);
+       
+        // hier ist das mauseloch
+        Room location = initialRoom.getExit("east").getExit("east").getExit("south").getExit("south");
+        Room newRoom = new Room("in einem kleinen Mauseloch");
+        location.setExit("down",newRoom);
+        newRoom.setExit("up",location);
 
-        // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
-        // public void setExits(Room north, Room east, Room south, Room west)
-        // initialise room exits
-        outside.setExit("east",theater);
-        outside.setExit("south",lab);
-        outside.setExit("west",pub);
+        // hier ist die rakete
 
-        theater.setExit("west", outside);
-        pub.setExit("east", outside);
-        lab.setExit("north",outside);
-        lab.setExit("east",office);
-        office.setExit("west", lab);
+        location = location.getExit("south");
 
-        gameStatus = new GameStatus(outside);  // start game outside
+        newRoom = new Room("in einer silbernen Rakete");
+        location.setExit("up",newRoom);
+        newRoom.setExit("down",location);
+
+
         // END_WORLD
+
+        gameStatus = new GameStatus(initialRoom);
+    }
+
+    private Room buildRow(Room upperRoom,String[]row){
+        Room newRoom = null, cursor = upperRoom, lastRoom,firstRoom = null;
+
+        for (int i = 0;i<row.length;i++){
+            lastRoom = newRoom;
+            newRoom = new Room(row[i]);
+            if (i==0) {
+                firstRoom = newRoom;
+            }
+            else{
+                lastRoom.setExit("east",newRoom);
+                newRoom.setExit("west",lastRoom);
+            }
+            if (cursor != null){
+                // invariant: cursor has to be north of room[i]
+                newRoom.setExit("north",cursor);
+                cursor.setExit("south",newRoom);
+                cursor = cursor.getExit("east");
+            }
+        }
+        return firstRoom;
     }
 
     /**
@@ -102,9 +157,11 @@ public class Game
     {
         System.out.println();
         System.out.println(welcomeString);
-    
+
         System.out.println(gameStatus.getLocationDescription());
         System.out.println();
     }
+
+    public static void playInstantly(){new Game().play();}
 
 }

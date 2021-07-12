@@ -6,7 +6,7 @@
 public class GameStatus
 {
     private Room currentRoom;
-    
+
     public GameStatus(Room initialRoom){
         this.currentRoom = initialRoom;
     }
@@ -17,11 +17,11 @@ public class GameStatus
         return currentRoom;
     }
     public String getLocationDescription(){
-        return "You are " +currentRoom.getDescription();
+        return "Du bist " +currentRoom.getDescription();
     }
-    
+
     private boolean playing = true;
     public void quit(){playing = false;}
     public boolean isPlaying(){return playing;}
-    
+
 }

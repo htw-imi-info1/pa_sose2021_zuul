@@ -23,7 +23,7 @@ public class WorldSpecificCommandsTest
     public void testLook()
     {
         String actual = game.processCommand("look");
-        assertTrue( actual.contains("Staubwüste"));
+        assertTrue( actual.contains("Wiese"));
         assertTrue( actual.contains("east"));
     }
 

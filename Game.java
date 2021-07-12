@@ -32,32 +32,33 @@ public class Game
 
     /**
      * Create all the rooms and link their exits together.
-     * 
+     * # 4. Totoro
+
     World:
-    - Staubwüste
-    - Krater
-    - Berg
-    - Mauseloch
+    - Wiese (wi)
+    - Wald (wa)
+    - Reisfeld (R)
+    - magischer Wald (mWa)
+    - Totoros Baum (TB)
 
-     * -> s - s - s    - s
-     *    |   |   |      |
-     *    s - K - B    - s
-     *    |   |   |      |
-     *    s - s - s(M) - B
-     *    |   |   |      |
-     *    s - B - s(R) - s
+     * -> Wi - Wi - Wi - Wa
+     *    |              |
+     *    R  - Wi   Wa - mWa
+     *         |           
+     *    R  - R  - mWa - mWa
+     *    |         |     
+     *    R    Wa - mWa - TB
 
-    Goal: Käse finden und zur Rakete bringen bevor ihn die Mondmäuse finden
+    Goal: Rußmännchen einsammeln und zu Totoro bringen
 
-    up/down: Rakete  (über Staubwüste s*, nicht über Krater oder Berg), Mauseloch
+    up/down: Totoros Baum (im magischen Wald)
 
     Items:
-    - Schweizer Käse
-    - Gouda
-    - Edammer
-    - Gogonzola
-    - Mausefalle
-
+    - Rußmännchen
+    - Blatt
+    - Eimer
+    - Schaufel
+    -----
      */
     private void createRooms()
     {
@@ -66,59 +67,73 @@ public class Game
         "Welcome to 'Maus im Mond'!\n"+
         "Maus im Mond is a new, incredibly boring adventure game.\n"+
         "Type 'help' if you need help.\n"; 
-        String[] row1 = {"in einer Staubwüste 1","in einer Staubwüste 2","in einer Staubwüste 3","in einer Staubwüste 4"};
-        String[] row2 = {"in einer Staubwüste 5","in einem Krater","auf einem Berg","in einer Staubwüste 6"};
-        String[] row3 = {"in einer Staubwüste 7","in einer Staubwüste 8","in einer Staubwüste 9","auf einem Berg"};
-        String[] row4 = {"in einer Staubwüste 10","Berg","in einer Staubwüste 11","in einer Staubwüste 12"};
-        Room firstRoom = buildRow(null, row1 );
-        Room initialRoom = firstRoom;
+        final String WI = "auf einer Wiese";
+        final String WA = "im Wald";
+        final String R = "im Reisfeld";
+        final String MW = "im magischen Wald";
+        final String TB = "auf Totoros Baum.";
 
-        firstRoom = buildRow(firstRoom, row2);
-        firstRoom = buildRow(firstRoom, row3);
-        firstRoom = buildRow(firstRoom, row4);
-       
-        // hier ist das mauseloch
-        Room location = initialRoom.getExit("east").getExit("east").getExit("south").getExit("south");
-        Room newRoom = new Room("in einem kleinen Mauseloch");
-        location.setExit("down",newRoom);
-        newRoom.setExit("up",location);
+        String[][]names = {
+                {WI,WI,WI,WA},
+                {R,WI,WA,MW},
+                {R,R,MW,MW},
+                {R,WA,MW,MW}};
 
-        // hier ist die rakete
+        Room[][] room = buildRooms(names);
+        /* j----0   1    2    3
+         * i
+         * 0 -> Wi - Wi - Wi - Wa
+         *      |              |
+         * 1    R  - Wi   Wa - mWa
+         *           |           
+         * 2    R  - R  - mWa - mWa
+         *      |         |     
+         * 3    R    Wa - mWa - TB
+         */
 
-        location = location.getExit("south");
-
-        newRoom = new Room("in einer silbernen Rakete");
-        location.setExit("up",newRoom);
-        newRoom.setExit("down",location);
-
-
+        room[0][0].connect("east",room[0][1]);
+        room[0][1].connect("east",room[0][2]);
+        room[0][2].connect("east",room[0][3]);
+        
+        room[0][0].connect("south",room[1][0]);
+        room[0][3].connect("south",room[1][3]);
+        
+        room[1][0].connect("east",room[1][1]);
+        room[1][2].connect("east",room[1][3]);
+        
+        room[1][1].connect("south",room[2][1]);
+        
+        room[2][0].connect("east",room[2][1]);
+        room[2][1].connect("east",room[2][2]);
+        room[2][2].connect("east",room[2][3]);
+        
+        room[2][0].connect("south",room[3][0]);
+        room[2][2].connect("south",room[3][2]);
+        
+        room[3][1].connect("east",room[3][2]);
+        room[3][2].connect("east",room[3][3]);
+        
+        Room totorosBaum = new Room(TB);
+        room[3][3].connect("up",totorosBaum);
+        
+        
+        
+        
+        
         // END_WORLD
-
-        gameStatus = new GameStatus(initialRoom);
+        gameStatus = new GameStatus(room[0][0]);
     }
 
-    private Room buildRow(Room upperRoom,String[]row){
-        Room newRoom = null, cursor = upperRoom, lastRoom,firstRoom = null;
-
-        for (int i = 0;i<row.length;i++){
-            lastRoom = newRoom;
-            newRoom = new Room(row[i]);
-            if (i==0) {
-                firstRoom = newRoom;
-            }
-            else{
-                lastRoom.setExit("east",newRoom);
-                newRoom.setExit("west",lastRoom);
-            }
-            if (cursor != null){
-                // invariant: cursor has to be north of room[i]
-                newRoom.setExit("north",cursor);
-                cursor.setExit("south",newRoom);
-                cursor = cursor.getExit("east");
+    private Room[][] buildRooms(String[][]names){
+        Room[][] result = new Room[names.length][];
+        for(int i = 0;i<names.length; i++){
+            result[i] = new Room[names[i].length];
+            for(int j=0;j<names[i].length;j++){
+                result[i][j] = new Room(names[i][j]);
             }
         }
-        return firstRoom;
-    }
+        return result;
+    }    
 
     /**
      *  Main play routine.  Loops until end of play.

@@ -32,72 +32,69 @@ public class Game
 
     /**
      * Create all the rooms and link their exits together.
-     *# 5. Harry Potter
+
+    # 6. Spongebob
 
     World:
-    - Korridor (Ko)
-    - Klassenzimmer (Kl)
-    - Raum der Wünsche (W)
-    - Gemeinschaftsraum (G)
-    - Große Halle (GH)
-    - Toilette der Maulenden Myrthe (TM)
-    - Bibliothek (B)
-    - Treppe (T)
+    - Krosse Krabbe (KK)
+    - Der Abfalleimer (AE)
+    - Patricks haus (PH)
+    - Thaddäus haus (TH)
+    - Spongebobs Ananas (SA)
+    - Sandys Treedome (ST)
+    - Schattige Shoals Altersheim (SSA)
+    - Straße (S)
 
-     *
-     *                       Ko - W
-     *                       |
-     *             GH        T  - B
-     *             |         |
-     *-> Ko - Ko - Ko - Ko - Ko
-     *        |              |
-     *        Kl             Ko - TM
-     *                       |
-     *                       Ko
-     *                       |
-     *                       Ko - G
-     *                       
-    Nummerierte Räume für das Array:
+     *        KK          PH  TH  SA
+     *        |           |   |   |
+     * -> S - S - S - S - S - S - S
+     *        |       |        
+     *        AE      S - ST
+     *                |
+     *                S - S - S - S - SSA   
 
-     *                           Ko6 - W(10)
-     *                           |up
-     *                GH(11)     T  - B(12)
-     *                |          |up
-     *-> Ko1 - Ko2 - Ko3 - Ko4 - Ko5
-     *           |               |
-     *           Kl(13)          Ko7 - TM(14)
-     *                           |
-     *                           Ko8
-     *                           |
-     *                           Ko9 - G(15)
+     *           KK(12)               PH(13) TH(14) SA(15)
+     *           |                    |      |      |
+     * -> S(0) - S(1) - S(2) - S(3) - S(4) - S(5) - S(6)
+     *           |             |        
+     *          AE(16)         S(7) - ST(17)
+     *                         |
+     *                         S(8) - S(9) - S(10) - S(11) - SSA(18)                
 
-    Goal: Loona Lovegoods Sachen zurück in den Gemeinschaftsraum bringen
+    Goal: Zutaten Einsammeln und zu Mr. Crabs in die Krosse Krabbe bringen
 
-    up/down: Treppe
+    up/down: Sandys Tree Dome als Luftschleuse hin und her
 
     Items:
-    - Spulenwurzeln
-    - Lenkpflaumen
-    - Radischen Ohrringe
-    - Butterbierkorken-Halsband
-    - Klitterer
-    - Löwenhut
+    - Boulette
+    - Brötchen
+    - Salat
+    - Zwiebeln
+    - Tomaten
+    - Käse
+    - Eingelegte Gürkchen
+    - Senf
+    - Ketchup
+    - Geheimzutat
+    - Eine Priese Liebe
+
+    -----
      */
     private void createRooms()
     {
         // START_WORLD
         welcomeString =   
-        "Welcome to Hogwarts!\n"+
+        "Welcome to Sponge Bob!\n"+
         "This is a new, incredibly boring adventure game.\n"+
         "Type 'help' if you need help.\n"; 
-        final String Ko = "im Korridor";
-        final String Kl = "im Klassenzimmer";
-        final String W = "im Raum der Wünsche";
-        final String G = "im Gemeinschaftsraum";
-        final String GH = "in der Große Halle";
-        final String TM = "in der Toilette der Maulenden Myrthe";
-        final String B = "in der Bibliothek";
-        final String T = "auf der Treppe";
+        final String KK = "bei der Krossen Krabbe";
+        final String AE = "beim Abfalleimer";
+        final String PH = "in Patricks Haus";
+        final String TH = "in Thaddäus Haus";
+        final String SA = "bei Spongebobs Ananas";
+        final String ST = "in Sandys Treedome";
+        final String SSA = "im 'Schattige Shoals Altersheim'";
+        final String S = "auf der Straße";
         /*
          *                           Ko6 - W(10)
          *                           |
@@ -112,38 +109,48 @@ public class Game
          *                           Ko9 - G(15)
          *                           */
 
-        Room[] room = new Room[16];
-        for(int i=1;i<= 9;i++)room[i] = new Room(Ko+" ("+i+")");
-        room[10] = new Room(W);
-        room[11] = new Room(GH);
-        room[12] = new Room(B);
-        room[13] = new Room(Kl);
-        room[14] = new Room(TM);
-        room[15] = new Room(G);
-        room[0] = new Room(T);
+        Room[] room = new Room[19];
+        for(int i=0;i<= 11;i++)room[i] = new Room(S+" ("+i+")");
 
+        room[12] = new Room(KK);
+        room[13] = new Room(PH);
+        room[14] = new Room(TH);
+        room[15] = new Room(SA);
+        room[16] = new Room(AE);
+        room[17] = new Room(ST);
+        room[18] = new Room(SSA);
+
+        // strassen
+
+        room[0].connect("east",room[1]);
         room[1].connect("east",room[2]);
         room[2].connect("east",room[3]);
-        room[2].connect("south",room[13]);
         room[3].connect("east",room[4]);
-        room[3].connect("north",room[11]);
         room[4].connect("east",room[5]);
+        room[5].connect("east",room[6]);
 
-        room[5].connect("up",room[0]);
-        room[0].connect("up",room[6]);
-        room[0].connect("east",room[12]);
-        room[6].connect("east",room[10]);
-
-        room[5].connect("south",room[7]);
-        room[7].connect("east",room[14]);
+        room[3].connect("south",room[7]);
         room[7].connect("south",room[8]);
 
-        room[8].connect("south",room[9]);
+        room[8].connect("east",room[9]);
+        room[9].connect("east",room[10]);
+        room[10].connect("east",room[11]);
 
-        room[9].connect("east",room[15]);
+        // andere Räume
+
+        room[1].connect("north",room[12]);
+        room[4].connect("north",room[13]);
+        room[5].connect("north",room[14]);
+        room[6].connect("north",room[15]);
+        
+        
+        room[1].connect("south",room[16]);
+        
+        room[7].connect("up",room[17]);
+        room[11].connect("east",room[18]);
 
         // END_WORLD
-        gameStatus = new GameStatus(room[1]);
+        gameStatus = new GameStatus(room[0]);
     }
 
     private Room[][] buildRooms(String[][]names){

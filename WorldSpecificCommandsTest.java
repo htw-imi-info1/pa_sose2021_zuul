@@ -23,19 +23,18 @@ public class WorldSpecificCommandsTest
     public void testLook()
     {
         String actual = game.processCommand("look");
-        assertTrue( actual.contains("Korridor"));
+        assertTrue( actual.contains("Straße"));
         assertTrue( actual.contains("east"));
     }
 
     @Test
     public void showExits(){
-        game.processCommand("go east");
         String result = game.processCommand("go east");
         assertTrue(result.contains("Exits:"));
         assertTrue(result.contains("north"));
         assertTrue(result.contains("east"));
         assertTrue(result.contains("west"));
-        assertFalse(result.contains("south"));
+        assertTrue(result.contains("south"));
     }
 
 }

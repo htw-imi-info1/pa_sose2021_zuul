@@ -37,56 +37,61 @@ public class WorldTest
     {
         assertEquals("Go where?", game.processCommand("go"));
     }
-    private final String WI = "Wiese";
-    private final String WA = "Wald";
-    private final String MW = "magischen Wald";
-    private final String RE = "Reisfeld";
-    private final String TB = "Totoros Baum";
+
+    final String Ko = "Korridor";
+    final String Kl = "Klassenzimmer";
+    final String W = "Raum der Wünsche";
+    final String G = "Gemeinschaftsraum";
+    final String GH = "Große Halle";
+    final String TM = "Toilette der Maulenden Myrthe";
+    final String B = "Bibliothek";
+    final String T = "Treppe";
     /**
      * Adapt this to your new world
      */
     @Test
     public void testBranch1()
     {
-        String[][] path = {{"east",WI},
-                {"east",WI},
-                {"east",WA},
-                {"south",MW},
-                {"west",WA}};
+        String[][] path = {{"east",Ko},
+                {"east",Ko},{"east",Ko},
+                {"east",Ko},
+                {"south",Ko},{"south",Ko},{"south",Ko},
+
+                {"east",G}};
         walkBranch("branch 1",path);
     }
 
     @Test
     public void testBranch2()
-    {
-        String[][] path = {{"south",RE},
-                {"east",WI},
-                {"south",RE},
-                {"east",MW},
-                {"east",MW}};
+    {   String[][] path = {{"east",Ko},
+                {"east",Ko},{"east",Ko},
+                {"east",Ko},
+                {"south",Ko},   
+                {"east",TM}};
+
         walkBranch("branch 2",path);
     }
 
     @Test
     public void testBranch3()
-    {
-        String[][] path = {{"south",RE},
-                {"east",WI},
-                {"south",RE},
-                {"west",RE},
-                {"south",RE}};
+    { 
+        String[][] path = {{"east",Ko},
+                {"east",Ko},{"east",Ko},
+                {"east",Ko},
+
+                {"up",T},{"up",Ko},{"east",W},
+            };
         walkBranch("branch 3",path);
     }
 
     @Test
     public void testBranch4()
     {
-        String[][] path = {{"south",RE},
-                {"east",WI},
-                {"south",RE},
-                {"east",MW},
-                {"south",MW},
-                {"west",WA}
+        String[][] path = {{"east",Ko},
+                {"east",Ko},{"east",Ko},
+                {"east",Ko},
+
+                {"up",T},{"east",B},
             };
         walkBranch("branch 4",path);
     }
@@ -94,19 +99,24 @@ public class WorldTest
     @Test
     public void testBranch5()
     {
-        String[][] path = {{"south",RE},
-                {"east",WI},
-                {"south",RE},
-                {"east",MW},
-                {"south",MW},
-                {"east",MW},   {"up",TB}
+        String[][] path = {{"east",Ko},
+                {"east",Ko},{"north",GH}
             };
         walkBranch("branch 5",path);
     }
 
+    @Test
+    public void testBranch6()
+    {
+        String[][] path = {{"east",Ko},
+                {"south",Kl}
+            };
+        walkBranch("branch 6",path);
+    }
+
     private void walkBranch(String name, String[][]path){
         for(int i= 0;i<path.length; i++){
-            goAndSee(name+" - step "+i,path[i][0],  path[i][1]);
+            goAndSee(name+" - step "+i+" ",path[i][0],  path[i][1]);
         }
         for(int i = path.length-1;i>0; i--){
             goAndSee(name+" - step "+i+" backwards",Room.reverse(path[i][0]),  path[i-1][1]);

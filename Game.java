@@ -32,96 +32,118 @@ public class Game
 
     /**
      * Create all the rooms and link their exits together.
-     * # 4. Totoro
+     *# 5. Harry Potter
 
     World:
-    - Wiese (wi)
-    - Wald (wa)
-    - Reisfeld (R)
-    - magischer Wald (mWa)
-    - Totoros Baum (TB)
+    - Korridor (Ko)
+    - Klassenzimmer (Kl)
+    - Raum der Wünsche (W)
+    - Gemeinschaftsraum (G)
+    - Große Halle (GH)
+    - Toilette der Maulenden Myrthe (TM)
+    - Bibliothek (B)
+    - Treppe (T)
 
-     * -> Wi - Wi - Wi - Wa
-     *    |              |
-     *    R  - Wi   Wa - mWa
-     *         |           
-     *    R  - R  - mWa - mWa
-     *    |         |     
-     *    R    Wa - mWa - TB
+     *
+     *                       Ko - W
+     *                       |
+     *             GH        T  - B
+     *             |         |
+     *-> Ko - Ko - Ko - Ko - Ko
+     *        |              |
+     *        Kl             Ko - TM
+     *                       |
+     *                       Ko
+     *                       |
+     *                       Ko - G
+     *                       
+    Nummerierte Räume für das Array:
 
-    Goal: Rußmännchen einsammeln und zu Totoro bringen
+     *                           Ko6 - W(10)
+     *                           |up
+     *                GH(11)     T  - B(12)
+     *                |          |up
+     *-> Ko1 - Ko2 - Ko3 - Ko4 - Ko5
+     *           |               |
+     *           Kl(13)          Ko7 - TM(14)
+     *                           |
+     *                           Ko8
+     *                           |
+     *                           Ko9 - G(15)
 
-    up/down: Totoros Baum (im magischen Wald)
+    Goal: Loona Lovegoods Sachen zurück in den Gemeinschaftsraum bringen
+
+    up/down: Treppe
 
     Items:
-    - Rußmännchen
-    - Blatt
-    - Eimer
-    - Schaufel
-    -----
+    - Spulenwurzeln
+    - Lenkpflaumen
+    - Radischen Ohrringe
+    - Butterbierkorken-Halsband
+    - Klitterer
+    - Löwenhut
      */
     private void createRooms()
     {
         // START_WORLD
         welcomeString =   
-        "Welcome to 'Maus im Mond'!\n"+
-        "Maus im Mond is a new, incredibly boring adventure game.\n"+
+        "Welcome to Hogwarts!\n"+
+        "This is a new, incredibly boring adventure game.\n"+
         "Type 'help' if you need help.\n"; 
-        final String WI = "auf einer Wiese";
-        final String WA = "im Wald";
-        final String R = "im Reisfeld";
-        final String MW = "im magischen Wald";
-        final String TB = "auf Totoros Baum.";
+        final String Ko = "im Korridor";
+        final String Kl = "im Klassenzimmer";
+        final String W = "im Raum der Wünsche";
+        final String G = "im Gemeinschaftsraum";
+        final String GH = "in der Große Halle";
+        final String TM = "in der Toilette der Maulenden Myrthe";
+        final String B = "in der Bibliothek";
+        final String T = "auf der Treppe";
+        /*
+         *                           Ko6 - W(10)
+         *                           |
+         *                GH(11)     T(0)  - B(12)
+         *                |          |
+         *-> Ko1 - Ko2 - Ko3 - Ko4 - Ko5
+         *           |               |
+         *           Kl(13)          Ko7 - TM(14)
+         *                           |
+         *                           Ko8
+         *                           |
+         *                           Ko9 - G(15)
+         *                           */
 
-        String[][]names = {
-                {WI,WI,WI,WA},
-                {R,WI,WA,MW},
-                {R,R,MW,MW},
-                {R,WA,MW,MW}};
+        Room[] room = new Room[16];
+        for(int i=1;i<= 9;i++)room[i] = new Room(Ko+" ("+i+")");
+        room[10] = new Room(W);
+        room[11] = new Room(GH);
+        room[12] = new Room(B);
+        room[13] = new Room(Kl);
+        room[14] = new Room(TM);
+        room[15] = new Room(G);
+        room[0] = new Room(T);
 
-        Room[][] room = buildRooms(names);
-        /* j----0   1    2    3
-         * i
-         * 0 -> Wi - Wi - Wi - Wa
-         *      |              |
-         * 1    R  - Wi   Wa - mWa
-         *           |           
-         * 2    R  - R  - mWa - mWa
-         *      |         |     
-         * 3    R    Wa - mWa - TB
-         */
+        room[1].connect("east",room[2]);
+        room[2].connect("east",room[3]);
+        room[2].connect("south",room[13]);
+        room[3].connect("east",room[4]);
+        room[3].connect("north",room[11]);
+        room[4].connect("east",room[5]);
 
-        room[0][0].connect("east",room[0][1]);
-        room[0][1].connect("east",room[0][2]);
-        room[0][2].connect("east",room[0][3]);
-        
-        room[0][0].connect("south",room[1][0]);
-        room[0][3].connect("south",room[1][3]);
-        
-        room[1][0].connect("east",room[1][1]);
-        room[1][2].connect("east",room[1][3]);
-        
-        room[1][1].connect("south",room[2][1]);
-        
-        room[2][0].connect("east",room[2][1]);
-        room[2][1].connect("east",room[2][2]);
-        room[2][2].connect("east",room[2][3]);
-        
-        room[2][0].connect("south",room[3][0]);
-        room[2][2].connect("south",room[3][2]);
-        
-        room[3][1].connect("east",room[3][2]);
-        room[3][2].connect("east",room[3][3]);
-        
-        Room totorosBaum = new Room(TB);
-        room[3][3].connect("up",totorosBaum);
-        
-        
-        
-        
-        
+        room[5].connect("up",room[0]);
+        room[0].connect("up",room[6]);
+        room[0].connect("east",room[12]);
+        room[6].connect("east",room[10]);
+
+        room[5].connect("south",room[7]);
+        room[7].connect("east",room[14]);
+        room[7].connect("south",room[8]);
+
+        room[8].connect("south",room[9]);
+
+        room[9].connect("east",room[15]);
+
         // END_WORLD
-        gameStatus = new GameStatus(room[0][0]);
+        gameStatus = new GameStatus(room[1]);
     }
 
     private Room[][] buildRooms(String[][]names){

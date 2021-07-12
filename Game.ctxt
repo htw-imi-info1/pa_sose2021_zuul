@@ -1,12 +1,11 @@
 #BlueJ class context
 comment0.target=Game
-comment0.text=\n\ \ This\ class\ is\ the\ main\ class\ of\ the\ "World\ of\ Zuul"\ application.\n\ \ "World\ of\ Zuul"\ is\ a\ very\ simple,\ text\ based\ adventure\ game.\ \ Users\n\ \ can\ walk\ around\ some\ scenery.\ That's\ all.\ It\ should\ really\ be\ extended\n\ \ to\ make\ it\ more\ interesting\!\n\n\ \ To\ play\ this\ game,\ create\ an\ instance\ of\ this\ class\ and\ call\ the\ "play"\n\ \ method.\n\n\ \ This\ main\ class\ creates\ and\ initialises\ all\ the\ others\:\ it\ creates\ all\n\ \ rooms,\ creates\ the\ parser\ and\ starts\ the\ game.\ \ It\ also\ evaluates\ and\n\ \ executes\ the\ commands\ that\ the\ parser\ returns.\n\n\ @author\ \ Michael\ K\u00F6lling\ and\ David\ J.\ Barnes\n\ @version\ 2016.02.29\n
 comment1.params=
 comment1.target=Game()
 comment1.text=\n\ Create\ the\ game\ and\ initialise\ its\ internal\ map.\n
 comment2.params=
 comment2.target=void\ createRooms()
-comment2.text=\n\ Create\ all\ the\ rooms\ and\ link\ their\ exits\ together.\n
+comment2.text=\n\ Create\ all\ the\ rooms\ and\ link\ their\ exits\ together.\n\n\ \ \ \ World\:\n\ \ \ \ the\ world\ consists\ of\ a\ wide\ area\ of\ Wasteland\ (about\ 3x3\ squares)\n\ \ \ \ and\ a\ rocket.\ (climb\ up/down)\ sitting\ above\ one\ of\ the\ wasteland\ fields\n\n\ \ \ \ (all\ rooms\ are\ wasteland,\ the\ one\ marked\ with\ *\ has\ the\ rocket)\n\n\ \ \ ->\ W\ -\ W\ -\ W\ \ -\ W\n\ \ \ \ \ \ |\ \ \ |\ \ \ |\ \ \ \ |\n\ \ \ \ \ \ W\ -\ W\ -\ W*\ -\ W\n\ \ \ \ \ \ |\ \ \ |\ \ \ |\ \ \ \ |\n\ \ \ \ \ \ W\ -\ W\ -\ W\ \ -\ W\n\n\ \ \ \ Goal\:\ Collect\ Radioactive\ Bunnies\ to\ gain\ enough\ Radiation\n\n\ \ \ \ Items\:\n\n\ \ \ \ Nuke\ Winter\ +7\n\ \ \ \ Basic\ Bunny\ +4\n\ \ \ \ Radiogenic\ +3\n\ \ \ \ Exposeya\ -2\n\ \ \ \ Karrotjuice\ +4\n\ \ \ \ Corrosion\ -4\n\ \ \ \ Dirty-Bomb\ -\ Doubles\ the\ total\ radiation\ level\ on\ your\ hand\n\n
 comment3.params=
 comment3.target=void\ play()
 comment3.text=\n\ \ Main\ play\ routine.\ \ Loops\ until\ end\ of\ play.\n
@@ -16,4 +15,6 @@ comment4.text=\n\ This\ is\ a\ further\ method\ added\ by\ BK\ to\n\ provide\ a\
 comment5.params=
 comment5.target=void\ printWelcome()
 comment5.text=\n\ Print\ out\ the\ opening\ message\ for\ the\ player.\n
-numComments=6
+comment6.params=
+comment6.target=void\ playImmediately()
+numComments=7

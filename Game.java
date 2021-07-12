@@ -14,7 +14,7 @@
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
  */
-
+import java.util.*;
 public class Game
 {
     private Parser parser;
@@ -32,36 +32,69 @@ public class Game
 
     /**
      * Create all the rooms and link their exits together.
+
+    World:
+    the world consists of a wide area of Wasteland (about 3x3 squares)
+    and a rocket. (climb up/down) sitting above one of the wasteland fields
+
+    (all rooms are wasteland, the one marked with * has the rocket)
+
+     *   -> W - W - W  - W
+     *      |   |   |    |
+     *      W - W - W* - W
+     *      |   |   |    |
+     *      W - W - W  - W
+
+    Goal: Collect Radioactive Bunnies to gain enough Radiation
+
+    Items:
+
+    Nuke Winter +7
+    Basic Bunny +4
+    Radiogenic +3
+    Exposeya -2
+    Karrotjuice +4
+    Corrosion -4
+    Dirty-Bomb - Doubles the total radiation level on your hand
+
      */
     private void createRooms()
     {
         // START_WORLD
-        welcomeString =   
-        "Welcome to the World of Zuul!\n"+
-        "World of Zuul is a new, incredibly boring adventure game.\n"+
-        "Type 'help' if you need help.\n"; 
+        welcomeString =
+        "Welcome to Radioactive Bunnies!\n"+
+        "Radioactive Bunnies is a new, incredibly boring adventure game.\n"+
+        "Type 'help' if you need help.\n";
 
-        Room outside, theater, pub, lab, office;
+        final int ROWS=3,COLS=4;
+        Room[][] wasteland = new Room[ROWS][COLS];
 
-        // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
-        // public void setExits(Room north, Room east, Room south, Room west)
-        // initialise room exits
-        outside.setExit("east",theater);
-        outside.setExit("south",lab);
-        outside.setExit("west",pub);
+        // create all rooms
+        for(int row = 0; row<ROWS; row++){
+            for (int col = 0; col < COLS; col++){
+                wasteland[row][col] = new Room("a wide area of wasteland");            
+            }
+        }
 
-        theater.setExit("west", outside);
-        pub.setExit("east", outside);
-        lab.setExit("north",outside);
-        lab.setExit("east",office);
-        office.setExit("west", lab);
+        // for all but the last col, add east/west connections to the east
+        for(int row = 0; row<ROWS; row++){
+            for (int col = 0; col < COLS-1; col++){
+                wasteland[row][col].setExit("east",wasteland[row][col+1]);
+                wasteland[row][col+1].setExit("west",wasteland[row][col]); 
+            }
+        }
 
-        gameStatus = new GameStatus(outside);  // start game outside
+        // for all but the last row, add south/north connections to the south
+        for(int row = 0; row<ROWS-1; row++){
+            for (int col = 0; col < COLS; col++){
+                wasteland[row][col].setExit("south",wasteland[row+1][col]);
+                wasteland[row+1][col].setExit("north",wasteland[row][col]); 
+            }
+        }
+        Room rocket = new Room("a silver shining rocket and have a perfect overview over a wide area of wasteland");
+        wasteland[1][2].setExit("up",rocket);
+        rocket.setExit("down",wasteland[1][2]);
+        gameStatus = new GameStatus(wasteland[0][0]);  // start game outside
         // END_WORLD
     }
 
@@ -102,9 +135,13 @@ public class Game
     {
         System.out.println();
         System.out.println(welcomeString);
-    
+
         System.out.println(gameStatus.getLocationDescription());
         System.out.println();
+    }
+
+    public static void playImmediately(){
+        new Game().play();
     }
 
 }

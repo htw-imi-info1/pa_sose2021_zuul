@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * 
+ *
  * @author  Barne Kleinen
  */
 public class WorldSpecificCommandsTest
@@ -23,18 +23,19 @@ public class WorldSpecificCommandsTest
     public void testLook()
     {
         String actual = game.processCommand("look");
-        assertTrue( actual.contains("You are outside the main entrance"));
-        assertTrue( actual.contains("west"));
+        assertTrue( actual.contains("wasteland"));
+        assertTrue( actual.contains("east"));
     }
 
     @Test
     public void showExits(){
         game.processCommand("go south");
-        String result = game.processCommand("go north");
+        String result = game.processCommand("go south");
         assertTrue(result.contains("Exits:"));
+        assertTrue(result.contains("north"));
         assertTrue(result.contains("east"));
-        assertTrue(result.contains("south"));
-        assertTrue(result.contains("west"));
+        assertTrue(!result.contains("west"));
+        assertTrue(!result.contains("south"));
     }
 
 }

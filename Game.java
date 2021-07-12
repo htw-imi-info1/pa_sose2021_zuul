@@ -35,6 +35,7 @@ public class Game
      */
     private void createRooms()
     {
+        // START_WORLD
         welcomeString =   
         "Welcome to the World of Zuul!\n"+
         "World of Zuul is a new, incredibly boring adventure game.\n"+
@@ -61,6 +62,7 @@ public class Game
         office.addExit("west", lab);
 
         gameStatus = new GameStatus(outside);  // start game outside
+        // END_WORLD
     }
 
     /**

@@ -19,7 +19,7 @@ public class Game
 {
     private Parser parser;
     private GameStatus gameStatus;
-    // private GameStatus gameStatus;
+    private String welcomeString;
 
     /**
      * Create the game and initialise its internal map.
@@ -35,6 +35,11 @@ public class Game
      */
     private void createRooms()
     {
+        welcomeString =   
+        "Welcome to the World of Zuul!\n"+
+        "World of Zuul is a new, incredibly boring adventure game.\n"+
+        "Type 'help' if you need help.\n"; 
+
         Room outside, theater, pub, lab, office;
 
         // create the rooms
@@ -94,15 +99,10 @@ public class Game
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
-        System.out.println("Type 'help' if you need help.");
-        System.out.println();
+        System.out.println(welcomeString);
+    
         System.out.println(gameStatus.getLocationDescription());
         System.out.println();
     }
-
-
-
 
 }

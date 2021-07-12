@@ -34,7 +34,9 @@ public class CommandTest
     {
         String actual = game.processCommand("help");
         assertTrue( actual.contains("Your command words are:"));
-        assertTrue( actual.contains("go quit help"));
+        assertTrue( actual.contains("go"));
+        assertTrue( actual.contains("quit"));
+        assertTrue( actual.contains("help"));
 
     }
 

@@ -39,9 +39,9 @@ public enum CommandWords{
      * Constructor - initialise the command words.
      */
     private CommandWords(){
-        commands.put("go", p-> new Go(p)); 
-        commands.put("quit", p-> new Quit(p)); 
-        commands.put("help", p-> new Help(p)); 
+        commands.put("go", p -> new Go(p)); 
+        commands.put("quit", p -> new Quit(p)); 
+        commands.put("help", p -> new Help(p)); 
         commands.put("unknown", p -> new SimpleCommand(p, "I don't know what you mean...\n"));
         commands.put("read", p-> new SimpleCommand(p,"You are reading a book\n"));
         Function<String,Command> lookGenerator = (p) -> new Look(p);

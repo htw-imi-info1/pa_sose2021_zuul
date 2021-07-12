@@ -1,10 +1,10 @@
 #BlueJ class context
-comment0.target=ShowExitsTest
+comment0.target=WorldSpecificCommandsTest
 comment0.text=\n\ \n\ @author\ \ Barne\ Kleinen\n
 comment1.params=
-comment1.target=ShowExitsTest()
+comment1.target=void\ setUp()
 comment2.params=
-comment2.target=void\ setUp()
+comment2.target=void\ testLook()
 comment3.params=
 comment3.target=void\ showExits()
 numComments=4

@@ -22,14 +22,6 @@ public class CommandTest
     }
 
     @Test
-    public void testLook()
-    {
-        String actual = game.processCommand("look");
-        assertTrue( actual.contains("You are outside the main entrance"));
-        assertTrue( actual.contains("west"));
-    }
-
-    @Test
     public void testHelp()
     {
         String actual = game.processCommand("help");

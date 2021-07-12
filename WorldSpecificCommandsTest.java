@@ -9,14 +9,9 @@ import org.junit.Test;
  * 
  * @author  Barne Kleinen
  */
-public class ShowExitsTest
+public class WorldSpecificCommandsTest
 {
     private Game game;
-
-    public ShowExitsTest()
-    {
-
-    }
 
     @Before
     public void setUp()
@@ -24,7 +19,13 @@ public class ShowExitsTest
         game = new Game();
     }
 
-
+    @Test
+    public void testLook()
+    {
+        String actual = game.processCommand("look");
+        assertTrue( actual.contains("You are outside the main entrance"));
+        assertTrue( actual.contains("west"));
+    }
 
     @Test
     public void showExits(){
@@ -36,5 +37,4 @@ public class ShowExitsTest
         assertTrue(result.contains("west"));
     }
 
-    
 }

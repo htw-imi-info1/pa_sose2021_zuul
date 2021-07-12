@@ -32,69 +32,85 @@ public class Game
 
     /**
      * Create all the rooms and link their exits together.
+    # Lucky Luke - Ma Dalton
+
+    frei nach https://www.youtube.com/watch?v=Fw6us1ipC-k
 
     World:
-    the world consists of a wide area of Wasteland (about 3x3 squares)
-    and a rocket. (climb up/down) sitting above one of the wasteland fields
 
-    (all rooms are wasteland, the one marked with * has the rocket)
+    - Bank
+    - Metzger
+    - Saloon
+    - Strasse
 
-     *   -> W - W - W  - W
-     *      |   |   |    |
-     *      W - W - W* - W
-     *      |   |   |    |
-     *      W - W - W  - W
+    Goal: Ma Dalton geht das Abendessen klauen.
+     *   Metzger   Saloon
+     *   |         |
+     *-> S -- S -- S -- S -- S* -- Sonnenuntergang
+     *        |
+     *        Bank
 
-    Goal: Collect Radioactive Bunnies to gain enough Radiation
+    up/down: Bergwerk
 
     Items:
-
-    Nuke Winter +7
-    Basic Bunny +4
-    Radiogenic +3
-    Exposeya -2
-    Karrotjuice +4
-    Corrosion -4
-    Dirty-Bomb - Doubles the total radiation level on your hand
+    - Lamb Chops
+    - Money
+    - Ratanplan
+    - Suppe
+    - Jolly Jumper (kann nicht aufgehoben werden)
 
      */
     private void createRooms()
     {
         // START_WORLD
         welcomeString =
-        "Welcome to Radioactive Bunnies!\n"+
-        "Radioactive Bunnies is a new, incredibly boring adventure game.\n"+
+        "Welcome to Lucky Luke!\n"+
+        "Lucky Luke is a new, incredibly boring adventure game.\n"+
         "Type 'help' if you need help.\n";
 
-        final int ROWS=3,COLS=4;
-        Room[][] wasteland = new Room[ROWS][COLS];
+        Room room1 = new Room("Strasse");
 
-        // create all rooms
-        for(int row = 0; row<ROWS; row++){
-            for (int col = 0; col < COLS; col++){
-                wasteland[row][col] = new Room("a wide area of wasteland");            
-            }
-        }
+        gameStatus = new GameStatus(room1);
+        Room room2 = new Room("Metzger");
+        room1.setExit("north",room2);
+        room2.setExit("south",room1);
 
-        // for all but the last col, add east/west connections to the east
-        for(int row = 0; row<ROWS; row++){
-            for (int col = 0; col < COLS-1; col++){
-                wasteland[row][col].setExit("east",wasteland[row][col+1]);
-                wasteland[row][col+1].setExit("west",wasteland[row][col]); 
-            }
-        }
+        room2 = new Room("Strasse");
+        room1.setExit("east",room2);
+        room2.setExit("west",room1);
 
-        // for all but the last row, add south/north connections to the south
-        for(int row = 0; row<ROWS-1; row++){
-            for (int col = 0; col < COLS; col++){
-                wasteland[row][col].setExit("south",wasteland[row+1][col]);
-                wasteland[row+1][col].setExit("north",wasteland[row][col]); 
-            }
-        }
-        Room rocket = new Room("a silver shining rocket and have a perfect overview over a wide area of wasteland");
-        wasteland[1][2].setExit("up",rocket);
-        rocket.setExit("down",wasteland[1][2]);
-        gameStatus = new GameStatus(wasteland[0][0]);  // start game outside
+        room1 = room2; // move down the street
+        room2 = new Room("Bank");
+        room1.setExit("south",room2);
+        room2.setExit("north",room1);
+
+        room2 = new Room("Strasse");
+        room1.setExit("east",room2);
+        room2.setExit("west",room1);
+
+        room1 = room2; // move down the street
+        room2 = new Room("Saloon");
+        room1.setExit("north",room2);
+        room2.setExit("south",room1);
+
+        room2 = new Room("Strasse");
+        room1.setExit("east",room2);
+        room2.setExit("west",room1);
+
+        room1 = room2; // move down the street
+        room2 = new Room("Strasse");
+        room1.setExit("east",room2);
+        room2.setExit("west",room1);
+
+        room1 = room2; // move down the street
+        room2 = new Room("Sonnenuntergang");
+        room1.setExit("east",room2);
+        room2.setExit("west",room1);
+
+        room2 = new Room("Bergwerk");
+        room1.setExit("down",room2);
+        room2.setExit("up",room1);
+
         // END_WORLD
     }
 

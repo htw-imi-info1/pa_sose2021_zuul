@@ -40,65 +40,37 @@ public class WorldTest
 
     /**
      * Adapt this to your new world
+     *   Metzger   Saloon
+     *   |         |
+     *-> S -- S -- S -- S -- S* -- Sonnenuntergang
+     *        |
+     *        Bank
+
      */
     @Test
-    public void completeWalkthroughRowsManual()
+    public void completeWalkthrough()
     {
-        goAndSee("1","east",  "wasteland");
-        goAndSee("2","east",  "wasteland");
-        goAndSee("3","east",  "wasteland");
-        goAndSee("4","east",  "no door");
-        goAndSee("5","south",  "wasteland");
-        goAndSee("6","west",  "wasteland");
-        goAndSee("7","west",  "wasteland");
-        goAndSee("8","west",  "wasteland");
-        goAndSee("9","south",  "wasteland");
-        goAndSee("10","east",  "wasteland");
-        goAndSee("11","east",  "wasteland");
-        goAndSee("12","east",  "wasteland");
+        goAndSee("1","north",  "Metzger");
+        goAndSee("2","south",  "Strasse");
+        goAndSee("3","east",  "Strasse");
+        goAndSee("4","south",  "Bank");
+        goAndSee("5","north",  "Strasse");
+        goAndSee("6","east",  "Strasse");
+        goAndSee("7","north",  "Saloon");
+        goAndSee("8","south",  "Strasse");
+        goAndSee("9","east",  "Strasse");
+        goAndSee("10","east",  "Strasse");
+        goAndSee("11","down",  "Bergwerk");
+        goAndSee("12","up",  "Strasse");
+        goAndSee("13","east",  "Sonnenuntergang");
+        goAndSee("west",  "Strasse");
+        goAndSee("west",  "Strasse");
+        goAndSee("west",  "Strasse");
+        goAndSee("west",  "Strasse");
+        goAndSee("west",  "Strasse");
+        goAndSee("west",  "no door");
     }
 
-    @Test
-    public void completeWalkthroughColsManual()
-    {
-        goAndSee("1","south",  "wasteland");
-        goAndSee("2","south",  "wasteland");
-        goAndSee("3","south",  "no door");
-        goAndSee("4","east",  "wasteland");
-        goAndSee("5","north",  "wasteland");
-        goAndSee("6","north",  "wasteland");
-        goAndSee("7","north",  "no door");
-        goAndSee("8","east",  "wasteland");
-        goAndSee("9","south",  "wasteland");
-        goAndSee("10","south",  "wasteland");
-    }
-
-    @Test
-    public void findRocket()
-    {
-        /*
-         *   -> W - W - W  - W
-         *      |   |   |    |
-         *      W - W - W* - W
-         *      |   |   |    |
-         *      W - W - W  - W
-         */
-        goAndSee("1","south",  "wasteland");
-        goAndSee("4","east",  "wasteland");
-        goAndSee("4","east",  "wasteland");
-        goAndSee("5","up",  "rocket");
-        goAndSee("2","down",  "wasteland");
-        goAndSee("4","east",  "wasteland");
-        goAndSee("4","south",  "wasteland");
-
-        //should be in the southweast corner now; check by checking the exits
-        String output = game.processCommand("look");
-        assertTrue(output.contains("north"));
-        assertTrue(output.contains("west"));
-        assertFalse(output.contains("south"));
-        assertFalse(output.contains("east"));
-
-    }
 
     /**
      * helper method for completeWalkthrough - no changes needed

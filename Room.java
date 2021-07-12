@@ -27,15 +27,33 @@ public class Room
     {
         this.description = description;
     }
+
     public void setExit(String d, Room r){exits.add(d,r);}
+
     public Room getExit(String d){return exits.get(d);}
-    
+
     /**
      * @return The description of the room.
      */
     public String getDescription()
     {
         return description + "\n" + exits.getDescription();
+    }
+
+    public void connect(String direction,Room other){
+        this.setExit(direction,other);
+        other.setExit(reverse(direction),this);
+    }
+
+    public static String reverse(String direction){
+        switch(direction){
+            case "north" : return "south";
+            case "south" : return "north";
+            case "east"  : return "west";
+            case "west"  : return "east";
+            case "up"    : return "down";
+            default: return "unknown";
+        }
     }
 
 }

@@ -38,14 +38,14 @@ public class Game
     - Krater
     - Berg
     - Mauseloch
-
-     * -> s - s - s    - s
-     *    |   |   |      |
-     *    s - K - B    - s
-     *    |   |   |      |
-     *    s - s - s(M) - B
-     *    |   |   |      |
-     *    s - B - s(R) - s
+     *      0   1   2     3
+     * 0 -> s - s - s   - s
+     *      |   |   |     |
+     * 1    s - K - B   - s
+     *      |   |   |     |
+     * 2    s - s - s(M)- B
+     *      |   |   |     |
+     * 3    s - B - s(R)- s
 
     Goal: Käse finden und zur Rakete bringen bevor ihn die Mondmäuse finden
 
@@ -66,59 +66,51 @@ public class Game
         "Welcome to 'Maus im Mond'!\n"+
         "Maus im Mond is a new, incredibly boring adventure game.\n"+
         "Type 'help' if you need help.\n"; 
-        String[] row1 = {"in einer Staubwüste 1","in einer Staubwüste 2","in einer Staubwüste 3","in einer Staubwüste 4"};
-        String[] row2 = {"in einer Staubwüste 5","in einem Krater","auf einem Berg","in einer Staubwüste 6"};
-        String[] row3 = {"in einer Staubwüste 7","in einer Staubwüste 8","in einer Staubwüste 9","auf einem Berg"};
-        String[] row4 = {"in einer Staubwüste 10","Berg","in einer Staubwüste 11","in einer Staubwüste 12"};
-        Room firstRoom = buildRow(null, row1 );
-        Room initialRoom = firstRoom;
+        String[][]names = { {"in einer Staubwüste 1","in einer Staubwüste 2","in einer Staubwüste 3","in einer Staubwüste 4"},
+                {"in einer Staubwüste 5","in einem Krater","auf einem Berg","in einer Staubwüste 6"},
+                {"in einer Staubwüste 7","in einer Staubwüste 8","in einer Staubwüste 9","auf einem Berg"},
+                {"in einer Staubwüste 10","Berg","in einer Staubwüste 11","in einer Staubwüste 12"}};
+        // first index is the row, second the column
+        Room[][] room = buildRooms(names);
+        // build the connections between rooms: for all rooms
+        for(int row = 0;row < room.length; row++){
+            for (int col=0;col < room[row].length; col++){
+                // for all but the last column: connect to east
+                if (col < room[row].length-1) 
+                    room[row][col].connect("east",room[row][col+1]);
+                // for all but the last row: connect to south
+                if (row < room.length-1)
+                    room[row][col].connect("south",room[row+1][col]);         
+            }
+        }
 
-        firstRoom = buildRow(firstRoom, row2);
-        firstRoom = buildRow(firstRoom, row3);
-        firstRoom = buildRow(firstRoom, row4);
-       
         // hier ist das mauseloch
-        Room location = initialRoom.getExit("east").getExit("east").getExit("south").getExit("south");
+        Room location = room[2][2];
         Room newRoom = new Room("in einem kleinen Mauseloch");
         location.setExit("down",newRoom);
         newRoom.setExit("up",location);
 
         // hier ist die rakete
 
-        location = location.getExit("south");
-
+        location = room[3][2];
         newRoom = new Room("in einer silbernen Rakete");
         location.setExit("up",newRoom);
         newRoom.setExit("down",location);
 
-
         // END_WORLD
-
-        gameStatus = new GameStatus(initialRoom);
+        gameStatus = new GameStatus(room[0][0]);
     }
 
-    private Room buildRow(Room upperRoom,String[]row){
-        Room newRoom = null, cursor = upperRoom, lastRoom,firstRoom = null;
-
-        for (int i = 0;i<row.length;i++){
-            lastRoom = newRoom;
-            newRoom = new Room(row[i]);
-            if (i==0) {
-                firstRoom = newRoom;
-            }
-            else{
-                lastRoom.setExit("east",newRoom);
-                newRoom.setExit("west",lastRoom);
-            }
-            if (cursor != null){
-                // invariant: cursor has to be north of room[i]
-                newRoom.setExit("north",cursor);
-                cursor.setExit("south",newRoom);
-                cursor = cursor.getExit("east");
+    private Room[][] buildRooms(String[][]names){
+        Room[][] result = new Room[names.length][];
+        for(int i = 0;i<names.length; i++){
+            result[i] = new Room[names[i].length];
+            for(int j=0;j<names[i].length;j++){
+                result[i][j] = new Room(names[i][j]);
             }
         }
-        return firstRoom;
-    }
+        return result;
+    }    
 
     /**
      *  Main play routine.  Loops until end of play.

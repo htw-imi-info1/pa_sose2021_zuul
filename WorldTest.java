@@ -42,46 +42,36 @@ public class WorldTest
     @Test
     public void completeWalkthrough()
     {
-
-
-      goAndSee("south", "in einem schmalen Korridor"); //korridor2);
-      goAndSee("west", "Quartier"); //quartier1);
-      goAndSee("east", "in einem schmalen Korridor"); //korridor2);
-      goAndSee("east", "in einem schmalen Korridor"); //korridor3);
-      goAndSee("east", "in einem schmalen Korridor"); //korridor4);
-      goAndSee("east", "in einem schmalen Korridor"); //korridor5);
-      goAndSee("north", "Toilette"); //toilette1);
-      goAndSee("south", "in einem schmalen Korridor"); //korridor5);
-      goAndSee("east", "Zentrale"); //zentrale);
-      goAndSee("west", "in einem schmalen Korridor"); //korridor5);
-      goAndSee("south", "in einem schmalen Korridor"); //korridor6);
-      goAndSee("east", "Quartier"); //quartier2);
-      goAndSee("west", "in einem schmalen Korridor"); //korridor6);
-      goAndSee("west", "in einem schmalen Korridor"); //korridor7);
-      goAndSee("west", "in einem schmalen Korridor"); //korridor8);
-      goAndSee("south", "in einem schmalen Korridor"); //korridor9);
-      goAndSee("west", "Toilette"); //toilette2);
-      goAndSee("east", "in einem schmalen Korridor"); //korridor9);
-      goAndSee("east", "in einem schmalen Korridor"); //korridor10);
-      goAndSee("east", "in einem schmalen Korridor"); //korridor11);
-      goAndSee("east", "Quartier"); //quartier3);
-      goAndSee("west", "in einem schmalen Korridor"); //korridor11);
-      goAndSee("south", "in einem schmalen Korridor"); //korridor12);
-      goAndSee("west", "in einem schmalen Korridor"); //korridor13);
-      goAndSee("down", "Maschinenraum"); //maschinenraum);
-      goAndSee("up", "in einem schmalen Korridor"); //korridor13);
-      goAndSee("east", "in einem schmalen Korridor"); //korridor12);
-      goAndSee("north", "in einem schmalen Korridor"); //korridor11);
-      goAndSee("west", "in einem schmalen Korridor"); //korridor10);
-      goAndSee("west", "in einem schmalen Korridor"); //korridor9);
-      goAndSee("north", "in einem schmalen Korridor"); //korridor8);
-      goAndSee("east", "in einem schmalen Korridor"); //korridor7);
-      goAndSee("east", "in einem schmalen Korridor"); //korridor6);
-      goAndSee("north", "in einem schmalen Korridor"); //korridor5);
-      goAndSee("west", "in einem schmalen Korridor"); //korridor4);
-      goAndSee("west", "in einem schmalen Korridor"); //korridor3);
-      goAndSee("west", "in einem schmalen Korridor"); //korridor2);
-      goAndSee("north", "in einem schmalen Korridor"); //korridor1);
+        goAndSee("east", "auf einem Wiesenweg"); //wiese2);
+        goAndSee("east", "auf einem Wiesenweg"); //wiese3);
+        goAndSee("down", "in einer grünen Röhre"); //roehre1);
+        goAndSee("down", "in einer dunklen Grotte"); //grotte1);
+        goAndSee("up", "in einer grünen Röhre"); //roehre1);
+        goAndSee("up", "auf einem Wiesenweg"); //wiese3);
+        goAndSee("east", "auf einem Wiesenweg"); //wiese4);
+        goAndSee("south", "auf einem Wiesenweg"); //wiese5);
+        goAndSee("down", "in einer grünen Röhre"); //roehre2);
+        goAndSee("down", "in einer dunklen Grotte"); //grotte2);
+        goAndSee("up", "in einer grünen Röhre"); //roehre2);
+        goAndSee("up", "auf einem Wiesenweg"); //wiese5);
+        goAndSee("west", "auf einem Wiesenweg"); //wiese6);
+        goAndSee("west", "auf einem Wiesenweg"); //wiese7);
+        goAndSee("down", "in einer grünen Röhre"); //roehre3);
+        goAndSee("down", "in einer dunklen Grotte"); //grotte3);
+        goAndSee("up", "in einer grünen Röhre"); //roehre3);
+        goAndSee("up", "auf einem Wiesenweg"); //wiese7);
+        goAndSee("south", "auf einem Wiesenweg"); //wiese8);
+        goAndSee("west", "auf einem Wiesenweg"); //wiese9);
+        goAndSee("west", "in einem Schloss"); //schloss);
+        goAndSee("east", "auf einem Wiesenweg"); //wiese9);
+        goAndSee("east", "auf einem Wiesenweg"); //wiese8);
+        goAndSee("north", "auf einem Wiesenweg"); //wiese7);
+        goAndSee("east", "auf einem Wiesenweg"); //wiese6);
+        goAndSee("east", "auf einem Wiesenweg"); //wiese5);
+        goAndSee("north", "auf einem Wiesenweg"); //wiese4);
+        goAndSee("west", "auf einem Wiesenweg"); //wiese3);
+        goAndSee("west", "auf einem Wiesenweg"); //wiese2);
+        goAndSee("west", "auf einem Wiesenweg"); //wiese1);
 
     }
     /**

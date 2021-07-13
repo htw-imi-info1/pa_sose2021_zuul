@@ -33,46 +33,46 @@ public class Game
     /**
      * Create all the rooms and link their exits together.
      *
-     * # 7. Star Wars
+     * # 8. Mario
      *
      * World:
-     * - Korridor (K)
-     * - Toilette (T)
-     * - Zentrale (Z)
-     * - Quartier (Q)
-     * - Maschinenraum (M)
+     * - Röhre (R)
+     * - Wiese (W)
+     * - Grotte (G)
+     * - Schloss (S)
      *
-     *     -> K           T
-     *        |           |
-     *    Q - K - K - K - K - Z
-     *                    |
-     *            K - K - K - Q
-     *            |
-     *        T - K - K - K - Q
+     *                G
      *                |
-     *    M - K - K - K
+     *                R
+     *                |
+     *     -> W - W - W - W
+     *                    |
+     *    G - R - W - W - W - R - G
+     *            |
+     *    S - W - W
      *
-     * Welt mit Nummern:
-     *     -> K1             T1
-     *        |              |
-     *   Q1 - K2 - K3 - K4 - K5 - Z
+     * World with Numbers:
+     *                  G1
+     *                  |
+     *                  R1
+     *                  |
+     *     -> W1 - W2 - W3 - W4
      *                       |
-     *             K8 - K7 - K6 - Q1
+     *   G3 - R3 - W7 - W6 - W5 - R2 - G2
      *             |
-     *        T2 - K9 - K10 - K11 - Q1
-     *                         |
-     *              M - K13 - K12
+     *    S - W9 - W8
      *
      *
-     * Goal: Sprengsatz in den maschinenraum bringen um Todesstern ausschalten zu können, dann wieder zum startpunkt
+     * Goal: Münzen aus Grotten einsammeln und zum Schloss gelangen
      *
-     * up/down: in den maschinenraum klettern und wieder heraus
+     * up/down: Röhren
      *
      * Items:
-     * - Schraubenschlüssel
-     * - Sormtrooper Helm
-     * - Blaster
-     * - Lichtschwertkristalle
+     * - Münze
+     * - Pilz
+     * - Stern
+     * - Panzer
+     * - Feuerblume
      *
      */
     private void createRooms()
@@ -83,74 +83,63 @@ public class Game
         "Type 'help' if you need help.\n";
 
 
-        Room korridor1, korridor2, korridor3, korridor4, korridor5, korridor6, korridor7, korridor8, korridor9, korridor10, korridor11, korridor12, korridor13,
-        toilette1, toilette2, quartier1, quartier2, quartier3,
-        zentrale, maschinenraum;
+        Room roehre1, roehre2, roehre3, roehre4,
+        grotte1, grotte2, grotte3, grotte4,
+        wiese1, wiese2, wiese3, wiese4, wiese5, wiese6, wiese7, wiese8, wiese9,
+        schloss;
 
         // create the rooms
-        korridor1 = new Room("in einem schmalen Korridor");
-        korridor2 = new Room("in einem schmalen Korridor");
-        korridor3 = new Room("in einem schmalen Korridor");
-        korridor4 = new Room("in einem schmalen Korridor");
-        korridor5 = new Room("in einem schmalen Korridor");
-        korridor6 = new Room("in einem schmalen Korridor");
-        korridor7 = new Room("in einem schmalen Korridor");
-        korridor8 = new Room("in einem schmalen Korridor");
-        korridor9 = new Room("in einem schmalen Korridor");
-        korridor10 = new Room("in einem schmalen Korridor");
-        korridor11 = new Room("in einem schmalen Korridor");
-        korridor12 = new Room("in einem schmalen Korridor");
-        korridor13 = new Room("in einem schmalen Korridor");
-        toilette1 = new Room("in einer ziemlich schmutzigen Toilette");
-        toilette2 = new Room("in einer schön sauberen Toilette");
-        quartier1 = new Room("in einem sehr ordentlichen Quartier");
-        quartier2 = new Room("in einem unaufgeräumten Quartier");
-        quartier3 = new Room("in einem schön dekorierten Quartier");
-        zentrale = new Room("in der Zentrale");
-        maschinenraum = new Room("im dampfenden Maschinenraum");
+        roehre1 = new Room("in einer grünen Röhre");
+        roehre2 = new Room("in einer grünen Röhre");
+        roehre3 = new Room("in einer grünen Röhre");
+        grotte1 = new Room("in einer dunklen Grotte");
+        grotte2 = new Room("in einer dunklen Grotte");
+        grotte3 = new Room("in einer dunklen Grotte");
+        wiese1 = new Room("auf einem Wiesenweg");
+        wiese2 = new Room("auf einem Wiesenweg");
+        wiese3 = new Room("auf einem Wiesenweg");
+        wiese4 = new Room("auf einem Wiesenweg");
+        wiese5 = new Room("auf einem Wiesenweg");
+        wiese6 = new Room("auf einem Wiesenweg");
+        wiese7 = new Room("auf einem Wiesenweg");
+        wiese8 = new Room("auf einem Wiesenweg");
+        wiese9 = new Room("auf einem Wiesenweg");
+        schloss = new Room("in einem Schloss");
 
         // public void setExits(Room north, Room east, Room south, Room west)
         // initialise room exits
-        korridor1.setExit("south", korridor2);
-        korridor2.setExit("west", quartier1);
-        quartier1.setExit("east", korridor2);
-        korridor2.setExit("east", korridor3);
-        korridor3.setExit("east", korridor4);
-        korridor4.setExit("east", korridor5);
-        korridor5.setExit("north", toilette1);
-        toilette1.setExit("south", korridor5);
-        korridor5.setExit("east", zentrale);
-        zentrale.setExit("west", korridor5);
-        korridor5.setExit("south", korridor6);
-        korridor6.setExit("east", quartier2);
-        quartier2.setExit("west", korridor6);
-        korridor6.setExit("west", korridor7);
-        korridor7.setExit("west", korridor8);
-        korridor8.setExit("south", korridor9);
-        korridor9.setExit("west", toilette2);
-        toilette2.setExit("east", korridor9);
-        korridor9.setExit("east", korridor10);
-        korridor10.setExit("east", korridor11);
-        korridor11.setExit("east", quartier3);
-        quartier3.setExit("west", korridor11);
-        korridor11.setExit("south", korridor12);
-        korridor12.setExit("west", korridor13);
-        korridor13.setExit("down", maschinenraum);
-        maschinenraum.setExit("up", korridor13);
-        korridor13.setExit("east", korridor12);
-        korridor12.setExit("north", korridor11);
-        korridor11.setExit("west", korridor10);
-        korridor10.setExit("west", korridor9);
-        korridor9.setExit("north", korridor8);
-        korridor8.setExit("east", korridor7);
-        korridor7.setExit("east", korridor6);
-        korridor6.setExit("north", korridor5);
-        korridor5.setExit("west", korridor4);
-        korridor4.setExit("west", korridor3);
-        korridor3.setExit("west", korridor2);
-        korridor2.setExit("north", korridor1);
+        wiese1.setExit("east", wiese2);
+        wiese2.setExit("east", wiese3);
+        wiese3.setExit("down", roehre1);
+        roehre1.setExit("down", grotte1);
+        grotte1.setExit("up", roehre1);
+        roehre1.setExit("up", wiese3);
+        wiese3.setExit("east", wiese4);
+        wiese4.setExit("south", wiese5);
+        wiese5.setExit("down", roehre2);
+        roehre2.setExit("down", grotte2);
+        grotte2.setExit("up", roehre2);
+        roehre2.setExit("up", wiese5);
+        wiese5.setExit("west", wiese6);
+        wiese6.setExit("west", wiese7);
+        wiese7.setExit("down", roehre3);
+        roehre3.setExit("down", grotte3);
+        grotte3.setExit("up", roehre3);
+        roehre3.setExit("up", wiese7);
+        wiese7.setExit("south", wiese8);
+        wiese8.setExit("west", wiese9);
+        wiese9.setExit("west", schloss);
+        schloss.setExit("east", wiese9);
+        wiese9.setExit("east", wiese8);
+        wiese8.setExit("north", wiese7);
+        wiese7.setExit("east", wiese6);
+        wiese6.setExit("east", wiese5);
+        wiese5.setExit("north", wiese4);
+        wiese4.setExit("west", wiese3);
+        wiese3.setExit("west", wiese2);
+        wiese2.setExit("west", wiese1);
 
-        gameStatus = new GameStatus(korridor1);  // start game in the amphitheater
+        gameStatus = new GameStatus(wiese1);  // start game in the amphitheater
     }
 
     /**

@@ -42,35 +42,47 @@ public class WorldTest
     @Test
     public void completeWalkthrough()
     {
-        goAndSee("east", "auf einem schmalen Pfad"); //pfad2);
-        goAndSee("north", "an Balus Ufer"); //balusUfer);
-        goAndSee("south", "auf einem schmalen Pfad"); //pfad2);
-        goAndSee("east", "auf einem schmalen Pfad"); //pfad3);
-        goAndSee("east", "auf einem schmalen Pfad"); //pfad4));
-        goAndSee("east", "auf einem schmalen Pfad"); //pfad5);
-        goAndSee("north", "auf dem Uebungsplatz der Elefantenkompanie"); //uebungsplatzElefanten);
-        goAndSee("south", "auf einem schmalen Pfad"); //pfad5);
-        goAndSee("south", "auf einem schmalen Pfad"); //pfad6);
-        goAndSee("east", "unter Kaas Baum");//kaasBaum);
-        goAndSee("west", "auf einem schmalen Pfad"); //pfad6);
-        goAndSee("west", "auf einem schmalen Pfad"); //pfad7);
-        goAndSee("west", "auf einem schmalen Pfad"); //pfad8);
-        goAndSee("south", "auf einem schmalen Pfad"); //pfad9);
-        goAndSee("west", "in Baghiras Höhle"); //baghirasHoehle);
-        goAndSee("east", "auf einem schmalen Pfad"); //pfad9);
-        goAndSee("up", "auf einem Berg"); //berg);
-        goAndSee("east", "in der Affenstadt"); //affenstadt);
-        goAndSee("west", "auf einem Berg"); //berg);
-        goAndSee("down", "auf einem schmalen Pfad"); //pfad9);
-        goAndSee("north", "auf einem schmalen Pfad"); //pfad8);
-        goAndSee("east", "auf einem schmalen Pfad"); //pfad7);
-        goAndSee("east", "auf einem schmalen Pfad"); //pfad6);
-        goAndSee("north", "auf einem schmalen Pfad"); //pfad5);
-        goAndSee("west", "auf einem schmalen Pfad"); //pfad4);
-        goAndSee("west", "auf einem schmalen Pfad"); //pfad3);
-        goAndSee("west", "auf einem schmalen Pfad"); //pfad2);
-        goAndSee("west", "auf einem schmalen Pfad"); //pfad1);
-
+        goAndSee("east", "street"); //strasse2);
+        goAndSee("south", "street"); //strasse4);
+        goAndSee("west", "office 1"); //zeitsparkasse1);
+        goAndSee("east", "street"); //strasse4);
+        goAndSee("east", "street"); //strasse5);
+        goAndSee("east", "street"); //strasse6);
+        goAndSee("east", "street"); //strasse7);
+        goAndSee("north", "street"); //strasse3);
+        goAndSee("west", "amphitheater"); //amphitheater);
+        goAndSee("east", "street"); //strasse3);
+        goAndSee("south", "street"); //strasse7);
+        goAndSee("south", "street"); //strasse9);
+        goAndSee("west", "office 2"); //zeitsparkasse2);
+        goAndSee("east", "street"); //strasse9);
+        goAndSee("east", "street"); //strasse10);
+        goAndSee("south", "street"); //strasse15);
+        goAndSee("west", "street"); //strasse14);
+        goAndSee("west", "street"); //strasse13);
+        goAndSee("west", "street"); //strasse12);
+        goAndSee("west", "street"); //strasse11);
+        goAndSee("north", "street"); //strasse8);
+        goAndSee("west", "office 3"); //zzeitsparkasse3);
+        goAndSee("east", "street"); //strasse8);
+        goAndSee("south", "street"); //strasse11);
+        goAndSee("east", "street"); //strasse12);
+        goAndSee("south", "street"); //strasse18);
+        goAndSee("west", "street"); //strasse17);
+        goAndSee("west", "street"); //strasse16);
+        goAndSee("north", "office 4"); //zzeitsparkasse4);
+        goAndSee("south", "street"); //strasse16);
+        goAndSee("east", "street"); //strasse17);
+        goAndSee("east", "street"); //strasse18);
+        goAndSee("east", "street"); //strasse19);
+        goAndSee("east", "street"); //strasse20);
+        goAndSee("east", "office 5"); //zzeitsparkasse5);
+        goAndSee("west", "street"); //strasse20);
+        goAndSee("west", "street"); //strasse19);
+        goAndSee("south", "street"); //strasse22);
+        goAndSee("west", "street"); //strasse21);
+        goAndSee("west", "Niemalsgasse"); //zniemalsgasse);
+        goAndSee("backwards", "Nirgendhaus"); //znirgendhaus);
 
     }
     /**

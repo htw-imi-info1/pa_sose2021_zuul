@@ -17,7 +17,7 @@ public class GameStatus
         return currentRoom;
     }
     public String getLocationDescription(){
-        return "Du bist " +currentRoom.getDescription();
+        return "You are " +currentRoom.getDescription();
     }
 
     private boolean playing = true;

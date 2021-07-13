@@ -32,85 +32,126 @@ public class Game
 
     /**
      * Create all the rooms and link their exits together.
-     * 
-    World:
-    - Staubwüste
-    - Krater
-    - Berg
-    - Mauseloch
-     *      0   1   2     3
-     * 0 -> s - s - s   - s
-     *      |   |   |     |
-     * 1    s - K - B   - s
-     *      |   |   |     |
-     * 2    s - s - s(M)- B
-     *      |   |   |     |
-     * 3    s - B - s(R)- s
-
-    Goal: Käse finden und zur Rakete bringen bevor ihn die Mondmäuse finden
-
-    up/down: Rakete  (über Staubwüste s*, nicht über Krater oder Berg), Mauseloch
-
-    Items:
-    - Schweizer Käse
-    - Gouda
-    - Edammer
-    - Gogonzola
-    - Mausefalle
-
+     *
+     * # 7. Star Wars
+     *
+     * World:
+     * - Korridor (K)
+     * - Toilette (T)
+     * - Zentrale (Z)
+     * - Quartier (Q)
+     * - Maschinenraum (M)
+     *
+     *     -> K           T
+     *        |           |
+     *    Q - K - K - K - K - Z
+     *                    |
+     *            K - K - K - Q
+     *            |
+     *        T - K - K - K - Q
+     *                |
+     *    M - K - K - K
+     *
+     * Welt mit Nummern:
+     *     -> K1             T1
+     *        |              |
+     *   Q1 - K2 - K3 - K4 - K5 - Z
+     *                       |
+     *             K8 - K7 - K6 - Q1
+     *             |
+     *        T2 - K9 - K10 - K11 - Q1
+     *                         |
+     *              M - K13 - K12
+     *
+     *
+     * Goal: Sprengsatz in den maschinenraum bringen um Todesstern ausschalten zu können, dann wieder zum startpunkt
+     *
+     * up/down: in den maschinenraum klettern und wieder heraus
+     *
+     * Items:
+     * - Schraubenschlüssel
+     * - Sormtrooper Helm
+     * - Blaster
+     * - Lichtschwertkristalle
+     *
      */
     private void createRooms()
     {
-        // START_WORLD
-        welcomeString =   
-        "Welcome to 'Maus im Mond'!\n"+
-        "Maus im Mond is a new, incredibly boring adventure game.\n"+
-        "Type 'help' if you need help.\n"; 
-        String[][]names = { {"in einer Staubwüste 1","in einer Staubwüste 2","in einer Staubwüste 3","in einer Staubwüste 4"},
-                {"in einer Staubwüste 5","in einem Krater","auf einem Berg","in einer Staubwüste 6"},
-                {"in einer Staubwüste 7","in einer Staubwüste 8","in einer Staubwüste 9","auf einem Berg"},
-                {"in einer Staubwüste 10","Berg","in einer Staubwüste 11","in einer Staubwüste 12"}};
-        // first index is the row, second the column
-        Room[][] room = buildRooms(names);
-        // build the connections between rooms: for all rooms
-        for(int row = 0;row < room.length; row++){
-            for (int col=0;col < room[row].length; col++){
-                // for all but the last column: connect to east
-                if (col < room[row].length-1) 
-                    room[row][col].connect("east",room[row][col+1]);
-                // for all but the last row: connect to south
-                if (row < room.length-1)
-                    room[row][col].connect("south",room[row+1][col]);         
-            }
-        }
+        welcomeString =
+        "Welcome to the World of Zuul!\n"+
+        "World of Zuul is a new, incredibly boring adventure game.\n"+
+        "Type 'help' if you need help.\n";
 
-        // hier ist das mauseloch
-        Room location = room[2][2];
-        Room newRoom = new Room("in einem kleinen Mauseloch");
-        location.setExit("down",newRoom);
-        newRoom.setExit("up",location);
 
-        // hier ist die rakete
+        Room korridor1, korridor2, korridor3, korridor4, korridor5, korridor6, korridor7, korridor8, korridor9, korridor10, korridor11, korridor12, korridor13,
+        toilette1, toilette2, quartier1, quartier2, quartier3,
+        zentrale, maschinenraum;
 
-        location = room[3][2];
-        newRoom = new Room("in einer silbernen Rakete");
-        location.setExit("up",newRoom);
-        newRoom.setExit("down",location);
+        // create the rooms
+        korridor1 = new Room("in einem schmalen Korridor");
+        korridor2 = new Room("in einem schmalen Korridor");
+        korridor3 = new Room("in einem schmalen Korridor");
+        korridor4 = new Room("in einem schmalen Korridor");
+        korridor5 = new Room("in einem schmalen Korridor");
+        korridor6 = new Room("in einem schmalen Korridor");
+        korridor7 = new Room("in einem schmalen Korridor");
+        korridor8 = new Room("in einem schmalen Korridor");
+        korridor9 = new Room("in einem schmalen Korridor");
+        korridor10 = new Room("in einem schmalen Korridor");
+        korridor11 = new Room("in einem schmalen Korridor");
+        korridor12 = new Room("in einem schmalen Korridor");
+        korridor13 = new Room("in einem schmalen Korridor");
+        toilette1 = new Room("in einer ziemlich schmutzigen Toilette");
+        toilette2 = new Room("in einer schön sauberen Toilette");
+        quartier1 = new Room("in einem sehr ordentlichen Quartier");
+        quartier2 = new Room("in einem unaufgeräumten Quartier");
+        quartier3 = new Room("in einem schön dekorierten Quartier");
+        zentrale = new Room("in der Zentrale");
+        maschinenraum = new Room("im dampfenden Maschinenraum");
 
-        // END_WORLD
-        gameStatus = new GameStatus(room[0][0]);
+        // public void setExits(Room north, Room east, Room south, Room west)
+        // initialise room exits
+        korridor1.setExit("south", korridor2);
+        korridor2.setExit("west", quartier1);
+        quartier1.setExit("east", korridor2);
+        korridor2.setExit("east", korridor3);
+        korridor3.setExit("east", korridor4);
+        korridor4.setExit("east", korridor5);
+        korridor5.setExit("north", toilette1);
+        toilette1.setExit("south", korridor5);
+        korridor5.setExit("east", zentrale);
+        zentrale.setExit("west", korridor5);
+        korridor5.setExit("south", korridor6);
+        korridor6.setExit("east", quartier2);
+        quartier2.setExit("west", korridor6);
+        korridor6.setExit("west", korridor7);
+        korridor7.setExit("west", korridor8);
+        korridor8.setExit("south", korridor9);
+        korridor9.setExit("west", toilette2);
+        toilette2.setExit("east", korridor9);
+        korridor9.setExit("east", korridor10);
+        korridor10.setExit("east", korridor11);
+        korridor11.setExit("east", quartier3);
+        quartier3.setExit("west", korridor11);
+        korridor11.setExit("south", korridor12);
+        korridor12.setExit("west", korridor13);
+        korridor13.setExit("down", maschinenraum);
+        maschinenraum.setExit("up", korridor13);
+        korridor13.setExit("east", korridor12);
+        korridor12.setExit("north", korridor11);
+        korridor11.setExit("west", korridor10);
+        korridor10.setExit("west", korridor9);
+        korridor9.setExit("north", korridor8);
+        korridor8.setExit("east", korridor7);
+        korridor7.setExit("east", korridor6);
+        korridor6.setExit("north", korridor5);
+        korridor5.setExit("west", korridor4);
+        korridor4.setExit("west", korridor3);
+        korridor3.setExit("west", korridor2);
+        korridor2.setExit("north", korridor1);
+
+        gameStatus = new GameStatus(korridor1);  // start game in the amphitheater
     }
-
-    private Room[][] buildRooms(String[][]names){
-        Room[][] result = new Room[names.length][];
-        for(int i = 0;i<names.length; i++){
-            result[i] = new Room[names[i].length];
-            for(int j=0;j<names[i].length;j++){
-                result[i][j] = new Room(names[i][j]);
-            }
-        }
-        return result;
-    }    
 
     /**
      *  Main play routine.  Loops until end of play.
@@ -153,7 +194,5 @@ public class Game
         System.out.println(gameStatus.getLocationDescription());
         System.out.println();
     }
-
-    public static void playInstantly(){new Game().play();}
 
 }

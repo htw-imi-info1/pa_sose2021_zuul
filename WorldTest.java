@@ -1,4 +1,3 @@
-
 import static org.hamcrest.Matcher.*;
 import static org.junit.Assert.*;
 import org.junit.After;
@@ -6,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * 
+ *
  * @author  Barne Kleinen
  */
 public class WorldTest
@@ -37,75 +36,65 @@ public class WorldTest
     {
         assertEquals("Go where?", game.processCommand("go"));
     }
-
     /**
      * Adapt this to your new world
      */
     @Test
     public void completeWalkthrough()
     {
-        // first row
-        goAndSee("11","east",  "Staubwüste");
-        goAndSee("12","east",  "Staubwüste");
-        goAndSee("13","east",  "Staubwüste");
-        goAndSee("1x","east",  "no door");
 
-        goAndSee("12_2","west",  "Staubwüste");
-        goAndSee("11_2","west",  "Staubwüste");
-        goAndSee("10_2","west",  "Staubwüste");
-        goAndSee("1x_2","west",  "no door");
 
-        // second row
-        goAndSee("20","south",  "Staubwüste");
-        goAndSee("21","east",  "Krater");
-        goAndSee("22","east",  "Berg");
-        goAndSee("23","east",  "Staubwüste");
-        goAndSee("2x","east",  "no door");
-
-        goAndSee("21_2","west",  "Berg");
-        goAndSee("21_2","west",  "Krater");
-        goAndSee("20_2","west",  "Staubwüste");
-        goAndSee("2x_2","west",  "no door");
-
-        // third row
-        goAndSee("30","south",  "Staubwüste");
-        goAndSee("31","east",  "Staubwüste");
-        goAndSee("32","east",  "Staubwüste");
-        goAndSee("32_1","down",  "Mauseloch");
-        goAndSee("32_2","up",  "Staubwüste");
-        goAndSee("33","east",  "Berg");
-        goAndSee("3x","east",  "no door");
-
-        goAndSee("32_2","west",  "Staubwüste");
-        goAndSee("31_2","west",  "Staubwüste");
-        goAndSee("30_2","west",  "Staubwüste");
-        goAndSee("3x_2","west",  "no door");
-
-        // forth row
-        goAndSee("40","south",  "Staubwüste");
-        goAndSee("41","east",  "Berg");
-        goAndSee("42","east",  "Staubwüste");
-        goAndSee("42_r","up",  "Rakete");
-        goAndSee("42_2","down",  "Staubwüste");
-        goAndSee("43","east",  "Staubwüste");
-        goAndSee("4x","east",  "no door");
-
-        goAndSee("42_2","west",  "Staubwüste");
-        goAndSee("41_2","west",  "Berg");
-        goAndSee("40_2","west",  "Staubwüste");
-        goAndSee("4x_2","west",  "no door");
+      goAndSee("south", "in einem schmalen Korridor"); //korridor2);
+      goAndSee("west", "Quartier"); //quartier1);
+      goAndSee("east", "in einem schmalen Korridor"); //korridor2);
+      goAndSee("east", "in einem schmalen Korridor"); //korridor3);
+      goAndSee("east", "in einem schmalen Korridor"); //korridor4);
+      goAndSee("east", "in einem schmalen Korridor"); //korridor5);
+      goAndSee("north", "Toilette"); //toilette1);
+      goAndSee("south", "in einem schmalen Korridor"); //korridor5);
+      goAndSee("east", "Zentrale"); //zentrale);
+      goAndSee("west", "in einem schmalen Korridor"); //korridor5);
+      goAndSee("south", "in einem schmalen Korridor"); //korridor6);
+      goAndSee("east", "Quartier"); //quartier2);
+      goAndSee("west", "in einem schmalen Korridor"); //korridor6);
+      goAndSee("west", "in einem schmalen Korridor"); //korridor7);
+      goAndSee("west", "in einem schmalen Korridor"); //korridor8);
+      goAndSee("south", "in einem schmalen Korridor"); //korridor9);
+      goAndSee("west", "Toilette"); //toilette2);
+      goAndSee("east", "in einem schmalen Korridor"); //korridor9);
+      goAndSee("east", "in einem schmalen Korridor"); //korridor10);
+      goAndSee("east", "in einem schmalen Korridor"); //korridor11);
+      goAndSee("east", "Quartier"); //quartier3);
+      goAndSee("west", "in einem schmalen Korridor"); //korridor11);
+      goAndSee("south", "in einem schmalen Korridor"); //korridor12);
+      goAndSee("west", "in einem schmalen Korridor"); //korridor13);
+      goAndSee("down", "Maschinenraum"); //maschinenraum);
+      goAndSee("up", "in einem schmalen Korridor"); //korridor13);
+      goAndSee("east", "in einem schmalen Korridor"); //korridor12);
+      goAndSee("north", "in einem schmalen Korridor"); //korridor11);
+      goAndSee("west", "in einem schmalen Korridor"); //korridor10);
+      goAndSee("west", "in einem schmalen Korridor"); //korridor9);
+      goAndSee("north", "in einem schmalen Korridor"); //korridor8);
+      goAndSee("east", "in einem schmalen Korridor"); //korridor7);
+      goAndSee("east", "in einem schmalen Korridor"); //korridor6);
+      goAndSee("north", "in einem schmalen Korridor"); //korridor5);
+      goAndSee("west", "in einem schmalen Korridor"); //korridor4);
+      goAndSee("west", "in einem schmalen Korridor"); //korridor3);
+      goAndSee("west", "in einem schmalen Korridor"); //korridor2);
+      goAndSee("north", "in einem schmalen Korridor"); //korridor1);
 
     }
-
     /**
      * helper method for completeWalkthrough - no changes needed
      */
-    private void goAndSee(String marker,String direction, String whatShouldBeContained){
+    private void goAndSee(String direction, String whatShouldBeContained){
         //when
         String result = game.processCommand("go "+direction);
         //then
         if (!result.contains(whatShouldBeContained))
-            fail(marker + result +" does not contain "+whatShouldBeContained);
+            fail(result +" does not contain "+whatShouldBeContained);
     }
+
+
 
 }

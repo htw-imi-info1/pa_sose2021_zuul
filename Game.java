@@ -33,47 +33,47 @@ public class Game
     /**
      * Create all the rooms and link their exits together.
      *
-     * # 8. Mario
+     * # 9. Dschungelbuch
      *
      * World:
-     * - Röhre (R)
-     * - Wiese (W)
-     * - Grotte (G)
-     * - Schloss (S)
+     * - Kaa's Baum (B)
+     * - Übungsplatz der Elefantenkompanie (Ü)
+     * - Balus Ufer (U)
+     * - Baghiras Höhle (H)
+     * - Affenstadt (A)
+     * - Berg (Bg)
+     * - Pfad (P)
      *
-     *                G
-     *                |
-     *                R
-     *                |
-     *     -> W - W - W - W
+     *        U           Ü
+     *        |           |
+     * -> P - P - P - P - P
      *                    |
-     *    G - R - W - W - W - R - G
+     *            P - P - P - B
      *            |
-     *    S - W - W
-     *
-     * World with Numbers:
-     *                  G1
-     *                  |
-     *                  R1
-     *                  |
-     *     -> W1 - W2 - W3 - W4
-     *                       |
-     *   G3 - R3 - W7 - W6 - W5 - R2 - G2
-     *             |
-     *    S - W9 - W8
+     *        H - P - Bg - A
+
+     * Welt mit nummern:
+     *      U              Ü
+     *      |              |
+     * -> P1 - P2 - P3 - P4 - P5
+     *                     |
+     *           P8 - P7 - P6 - B
+     *           |
+     *       H - P9 - Bg - A
      *
      *
-     * Goal: Münzen aus Grotten einsammeln und zum Schloss gelangen
      *
-     * up/down: Röhren
+     * Goal: Bananen von King Louis aus der Affenstadt klauen - davor genügend Stöcke und Steine sammeln für Ablenkung für die Affen
+     *
+     * up/down: den Berg zur Affenstadt hinauf klettern
      *
      * Items:
-     * - Münze
-     * - Pilz
-     * - Stern
-     * - Panzer
-     * - Feuerblume
-     *
+     * - Bananen
+     * - Stock
+     * - Steine
+     * - Kaa's alte Haut
+     * - Beeren
+     * - Blätter
      */
     private void createRooms()
     {
@@ -83,63 +83,59 @@ public class Game
         "Type 'help' if you need help.\n";
 
 
-        Room roehre1, roehre2, roehre3, roehre4,
-        grotte1, grotte2, grotte3, grotte4,
-        wiese1, wiese2, wiese3, wiese4, wiese5, wiese6, wiese7, wiese8, wiese9,
-        schloss;
+        Room kaasBaum, uebungsplatzElefanten, balusUfer, baghirasHoehle, affenstadt, berg,
+        pfad1, pfad2, pfad3, pfad4, pfad5, pfad6, pfad7, pfad8, pfad9;
+
 
         // create the rooms
-        roehre1 = new Room("in einer grünen Röhre");
-        roehre2 = new Room("in einer grünen Röhre");
-        roehre3 = new Room("in einer grünen Röhre");
-        grotte1 = new Room("in einer dunklen Grotte");
-        grotte2 = new Room("in einer dunklen Grotte");
-        grotte3 = new Room("in einer dunklen Grotte");
-        wiese1 = new Room("auf einem Wiesenweg");
-        wiese2 = new Room("auf einem Wiesenweg");
-        wiese3 = new Room("auf einem Wiesenweg");
-        wiese4 = new Room("auf einem Wiesenweg");
-        wiese5 = new Room("auf einem Wiesenweg");
-        wiese6 = new Room("auf einem Wiesenweg");
-        wiese7 = new Room("auf einem Wiesenweg");
-        wiese8 = new Room("auf einem Wiesenweg");
-        wiese9 = new Room("auf einem Wiesenweg");
-        schloss = new Room("in einem Schloss");
+        kaasBaum = new Room("unter Kaas Baum");
+        uebungsplatzElefanten = new Room("auf dem Uebungsplatz der Elefantenkompanie");
+        balusUfer = new Room("an Balus Ufer");
+        baghirasHoehle = new Room("in Baghiras Höhle");
+        affenstadt = new Room("in der Affenstadt");
+        berg = new Room("auf einem Berg");
+        pfad1 = new Room("auf einem schmalen Pfad");
+        pfad2 = new Room("auf einem schmalen Pfad");
+        pfad3 = new Room("auf einem schmalen Pfad");
+        pfad4 = new Room("auf einem schmalen Pfad");
+        pfad5 = new Room("auf einem schmalen Pfad");
+        pfad6 = new Room("auf einem schmalen Pfad");
+        pfad7 = new Room("auf einem schmalen Pfad");
+        pfad8 = new Room("auf einem schmalen Pfad");
+        pfad9 = new Room("auf einem schmalen Pfad");
 
         // public void setExits(Room north, Room east, Room south, Room west)
         // initialise room exits
-        wiese1.setExit("east", wiese2);
-        wiese2.setExit("east", wiese3);
-        wiese3.setExit("down", roehre1);
-        roehre1.setExit("down", grotte1);
-        grotte1.setExit("up", roehre1);
-        roehre1.setExit("up", wiese3);
-        wiese3.setExit("east", wiese4);
-        wiese4.setExit("south", wiese5);
-        wiese5.setExit("down", roehre2);
-        roehre2.setExit("down", grotte2);
-        grotte2.setExit("up", roehre2);
-        roehre2.setExit("up", wiese5);
-        wiese5.setExit("west", wiese6);
-        wiese6.setExit("west", wiese7);
-        wiese7.setExit("down", roehre3);
-        roehre3.setExit("down", grotte3);
-        grotte3.setExit("up", roehre3);
-        roehre3.setExit("up", wiese7);
-        wiese7.setExit("south", wiese8);
-        wiese8.setExit("west", wiese9);
-        wiese9.setExit("west", schloss);
-        schloss.setExit("east", wiese9);
-        wiese9.setExit("east", wiese8);
-        wiese8.setExit("north", wiese7);
-        wiese7.setExit("east", wiese6);
-        wiese6.setExit("east", wiese5);
-        wiese5.setExit("north", wiese4);
-        wiese4.setExit("west", wiese3);
-        wiese3.setExit("west", wiese2);
-        wiese2.setExit("west", wiese1);
+        pfad1.setExit("east", pfad2);
+        pfad2.setExit("west", pfad1);
+        pfad2.setExit("north", balusUfer);
+        balusUfer.setExit("south", pfad2);
+        pfad2.setExit("east", pfad3);
+        pfad3.setExit("west", pfad2);
+        pfad3.setExit("east", pfad4);
+        pfad4.setExit("west", pfad3);
+        pfad4.setExit("east", pfad5);
+        pfad5.setExit("west", pfad4);
+        pfad5.setExit("north", uebungsplatzElefanten);
+        uebungsplatzElefanten.setExit("south", pfad5);
+        pfad5.setExit("south", pfad6);
+        pfad6.setExit("north", pfad5);
+        pfad6.setExit("east", kaasBaum);
+        kaasBaum.setExit("west", pfad6);
+        pfad6.setExit("west", pfad7);
+        pfad7.setExit("east", pfad6);
+        pfad7.setExit("west", pfad8);
+        pfad8.setExit("east", pfad7);
+        pfad8.setExit("south", pfad9);
+        pfad9.setExit("north", pfad8);
+        pfad9.setExit("west", baghirasHoehle);
+        baghirasHoehle.setExit("east", pfad9);
+        pfad9.setExit("up", berg);
+        berg.setExit("down", pfad9);
+        berg.setExit("east", affenstadt);
+        affenstadt.setExit("west", berg);
 
-        gameStatus = new GameStatus(wiese1);  // start game in the amphitheater
+        gameStatus = new GameStatus(pfad1);  // start game in the amphitheater
     }
 
     /**

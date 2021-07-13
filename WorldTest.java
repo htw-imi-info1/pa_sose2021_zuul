@@ -42,36 +42,35 @@ public class WorldTest
     @Test
     public void completeWalkthrough()
     {
-        goAndSee("east", "auf einem Wiesenweg"); //wiese2);
-        goAndSee("east", "auf einem Wiesenweg"); //wiese3);
-        goAndSee("down", "in einer grünen Röhre"); //roehre1);
-        goAndSee("down", "in einer dunklen Grotte"); //grotte1);
-        goAndSee("up", "in einer grünen Röhre"); //roehre1);
-        goAndSee("up", "auf einem Wiesenweg"); //wiese3);
-        goAndSee("east", "auf einem Wiesenweg"); //wiese4);
-        goAndSee("south", "auf einem Wiesenweg"); //wiese5);
-        goAndSee("down", "in einer grünen Röhre"); //roehre2);
-        goAndSee("down", "in einer dunklen Grotte"); //grotte2);
-        goAndSee("up", "in einer grünen Röhre"); //roehre2);
-        goAndSee("up", "auf einem Wiesenweg"); //wiese5);
-        goAndSee("west", "auf einem Wiesenweg"); //wiese6);
-        goAndSee("west", "auf einem Wiesenweg"); //wiese7);
-        goAndSee("down", "in einer grünen Röhre"); //roehre3);
-        goAndSee("down", "in einer dunklen Grotte"); //grotte3);
-        goAndSee("up", "in einer grünen Röhre"); //roehre3);
-        goAndSee("up", "auf einem Wiesenweg"); //wiese7);
-        goAndSee("south", "auf einem Wiesenweg"); //wiese8);
-        goAndSee("west", "auf einem Wiesenweg"); //wiese9);
-        goAndSee("west", "in einem Schloss"); //schloss);
-        goAndSee("east", "auf einem Wiesenweg"); //wiese9);
-        goAndSee("east", "auf einem Wiesenweg"); //wiese8);
-        goAndSee("north", "auf einem Wiesenweg"); //wiese7);
-        goAndSee("east", "auf einem Wiesenweg"); //wiese6);
-        goAndSee("east", "auf einem Wiesenweg"); //wiese5);
-        goAndSee("north", "auf einem Wiesenweg"); //wiese4);
-        goAndSee("west", "auf einem Wiesenweg"); //wiese3);
-        goAndSee("west", "auf einem Wiesenweg"); //wiese2);
-        goAndSee("west", "auf einem Wiesenweg"); //wiese1);
+        goAndSee("east", "auf einem schmalen Pfad"); //pfad2);
+        goAndSee("north", "an Balus Ufer"); //balusUfer);
+        goAndSee("south", "auf einem schmalen Pfad"); //pfad2);
+        goAndSee("east", "auf einem schmalen Pfad"); //pfad3);
+        goAndSee("east", "auf einem schmalen Pfad"); //pfad4));
+        goAndSee("east", "auf einem schmalen Pfad"); //pfad5);
+        goAndSee("north", "auf dem Uebungsplatz der Elefantenkompanie"); //uebungsplatzElefanten);
+        goAndSee("south", "auf einem schmalen Pfad"); //pfad5);
+        goAndSee("south", "auf einem schmalen Pfad"); //pfad6);
+        goAndSee("east", "unter Kaas Baum");//kaasBaum);
+        goAndSee("west", "auf einem schmalen Pfad"); //pfad6);
+        goAndSee("west", "auf einem schmalen Pfad"); //pfad7);
+        goAndSee("west", "auf einem schmalen Pfad"); //pfad8);
+        goAndSee("south", "auf einem schmalen Pfad"); //pfad9);
+        goAndSee("west", "in Baghiras Höhle"); //baghirasHoehle);
+        goAndSee("east", "auf einem schmalen Pfad"); //pfad9);
+        goAndSee("up", "auf einem Berg"); //berg);
+        goAndSee("east", "in der Affenstadt"); //affenstadt);
+        goAndSee("west", "auf einem Berg"); //berg);
+        goAndSee("down", "auf einem schmalen Pfad"); //pfad9);
+        goAndSee("north", "auf einem schmalen Pfad"); //pfad8);
+        goAndSee("east", "auf einem schmalen Pfad"); //pfad7);
+        goAndSee("east", "auf einem schmalen Pfad"); //pfad6);
+        goAndSee("north", "auf einem schmalen Pfad"); //pfad5);
+        goAndSee("west", "auf einem schmalen Pfad"); //pfad4);
+        goAndSee("west", "auf einem schmalen Pfad"); //pfad3);
+        goAndSee("west", "auf einem schmalen Pfad"); //pfad2);
+        goAndSee("west", "auf einem schmalen Pfad"); //pfad1);
+
 
     }
     /**

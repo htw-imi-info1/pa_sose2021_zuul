@@ -17,7 +17,8 @@ public class Help extends Command
         +"\n"
         +"Your command words are:"
         +"\n"
-        +"   go quit help"
+        +"   "
+        + CommandWords.INSTANCE.getValidCommands()
         +"\n";
     }
 }

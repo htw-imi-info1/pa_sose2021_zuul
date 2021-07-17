@@ -1,18 +1,16 @@
 #BlueJ class context
 comment0.target=Room
-comment0.text=\n\ Class\ Room\ -\ a\ room\ in\ an\ adventure\ game.\n\n\ This\ class\ is\ part\ of\ the\ "World\ of\ Zuul"\ application.\ \n\ "World\ of\ Zuul"\ is\ a\ very\ simple,\ text\ based\ adventure\ game.\ \ \n\n\ A\ "Room"\ represents\ one\ location\ in\ the\ scenery\ of\ the\ game.\ \ It\ is\ \n\ connected\ to\ other\ rooms\ via\ exits.\ \ The\ exits\ are\ labelled\ north,\ \n\ east,\ south,\ west.\ \ For\ each\ direction,\ the\ room\ stores\ a\ reference\n\ to\ the\ neighboring\ room,\ or\ null\ if\ there\ is\ no\ exit\ in\ that\ direction.\n\ \n\ @author\ \ Michael\ K\u00F6lling\ and\ David\ J.\ Barnes\n\ @version\ 2016.02.29\n
+comment0.text=\n\ Class\ Room\ -\ a\ room\ in\ an\ adventure\ game.\n\n\ This\ class\ is\ part\ of\ the\ "World\ of\ Zuul"\ application.\n\ "World\ of\ Zuul"\ is\ a\ very\ simple,\ text\ based\ adventure\ game.\n\n\ A\ "Room"\ represents\ one\ location\ in\ the\ scenery\ of\ the\ game.\ \ It\ is\n\ connected\ to\ other\ rooms\ via\ exits.\ \ The\ exits\ are\ labelled\ north,\n\ east,\ south,\ west.\ \ For\ each\ direction,\ the\ room\ stores\ a\ reference\n\ to\ the\ neighboring\ room,\ or\ null\ if\ there\ is\ no\ exit\ in\ that\ direction.\n\n\ @author\ \ Michael\ K\u00F6lling\ and\ David\ J.\ Barnes\n\ @version\ 2016.02.29\n
 comment1.params=description
 comment1.target=Room(java.lang.String)
 comment1.text=\n\ Create\ a\ room\ described\ "description".\ Initially,\ it\ has\n\ no\ exits.\ "description"\ is\ something\ like\ "a\ kitchen"\ or\n\ "an\ open\ court\ yard".\n\ @param\ description\ The\ room's\ description.\n
 comment2.params=d\ r
 comment2.target=void\ setExit(java.lang.String,\ Room)
-comment3.params=d
-comment3.target=Room\ getExit(java.lang.String)
-comment4.params=
-comment4.target=java.lang.String\ getDescription()
-comment4.text=\n\ @return\ The\ description\ of\ the\ room.\n
-comment5.params=direction\ other
-comment5.target=void\ connect(java.lang.String,\ Room)
-comment6.params=direction
-comment6.target=java.lang.String\ reverse(java.lang.String)
-numComments=7
+comment3.params=i
+comment3.target=void\ addItem(Item)
+comment4.params=d
+comment4.target=Room\ getExit(java.lang.String)
+comment5.params=
+comment5.target=java.lang.String\ getDescription()
+comment5.text=\n\ @return\ The\ description\ of\ the\ room.\n
+numComments=6

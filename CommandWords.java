@@ -47,6 +47,8 @@ public enum CommandWords{
         Function<String,Command> lookGenerator = (p) -> new Look(p);
         commands.put("look", lookGenerator);
         commands.put("x",lookGenerator);
+        commands.put("back", p -> new Back(p));
+        commands.put("beamer", p -> new Beamer(p));
     }
 
     /**

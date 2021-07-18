@@ -12,7 +12,7 @@ public class CommandTest
      */
     public CommandTest()
     {
-        game = new Game();    
+        game = new Game();
     }
 
     @Test
@@ -32,6 +32,14 @@ public class CommandTest
 
     }
 
+     @Test
+    public void testHelpAdditionalCommands()
+    {
+        String actual = game.processCommand("help");
+        assertTrue( actual.contains("read"));
+        assertTrue( actual.contains("look"));
+    }
+
     @Test
     public void testUnknown(){
         assertEquals("I don't know what you mean...\n",game.processCommand("murks"));
@@ -39,9 +47,20 @@ public class CommandTest
 
     @Test
     public void testQuit(){
-
         assertEquals("Quit what?",game.processCommand("quit not really"));
         assertEquals("Thank you for playing.  Good bye.\n",game.processCommand("quit"));
     }
-}
 
+    @Test
+    public void testBack(){
+        game.processCommand("go west");
+        String actual = game.processCommand("back");
+     //   assertTrue( actual.contains("main entrance"),"main entrance should be contained: "+actual);
+        actual = game.processCommand("back");
+        assertTrue( actual.contains("can't remember"),"can't remember should be contained");
+
+
+    }
+
+
+}

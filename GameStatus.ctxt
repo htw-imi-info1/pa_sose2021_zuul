@@ -1,6 +1,5 @@
 #BlueJ class context
 comment0.target=GameStatus
-comment0.text=\n\ uncomment\ the\ implements\ part\ if\ you\ want\ the\ compiler\ to\ help\n\ with\ the\ correct\ method\ signatures.\n
 comment1.params=initialRoom
 comment1.target=GameStatus(Room)
 comment2.params=room
@@ -8,9 +7,15 @@ comment2.target=void\ setLocation(Room)
 comment3.params=
 comment3.target=Room\ getLocation()
 comment4.params=
-comment4.target=java.lang.String\ getLocationDescription()
+comment4.target=boolean\ goBack()
 comment5.params=
-comment5.target=void\ quit()
+comment5.target=void\ chargeBeamer()
 comment6.params=
-comment6.target=boolean\ isPlaying()
-numComments=7
+comment6.target=boolean\ fireBeamer()
+comment7.params=
+comment7.target=java.lang.String\ getLocationDescription()
+comment8.params=
+comment8.target=void\ quit()
+comment9.params=
+comment9.target=boolean\ isPlaying()
+numComments=10
